@@ -3,5 +3,6 @@ package models;
 public class Principal {
     public static void main(String[] args) {
         System.out.println("Hello Word");
+        Fornecedor.imprimir();
     }
 }
