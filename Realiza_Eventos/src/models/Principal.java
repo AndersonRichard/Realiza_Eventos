@@ -1,6 +1,6 @@
-package Views;
+package models;
 
-public class main {
+public class Principal {
     public static void main(String[] args) {
         System.out.println("Hello Word");
     }
