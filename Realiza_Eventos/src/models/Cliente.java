@@ -36,15 +36,15 @@ public class Cliente extends ModeloBase{
     }
     public String toString() {
         return String.format("""
-                        %s
+                        Id: %s
                         Nome: %s
                         Telefone: %s
                         Email: %s
                         """,
-                super.toString(),
-                this.getNome(),
-                this.getTelefone(),
-                this.getEmail());
+                this.id,
+                this.nome,
+                this.telefone,
+                this.email);
     }
 
 }
