@@ -33,7 +33,7 @@ public class ServiceBase<E extends ModeloBase> {
     }
 
     // Atualiza o registro
-    void update(E registro){
+    public void update(E registro){
         if (new ArrayList<>(dados).contains(registro)){
             dados.remove(registro);
             dados.add(registro);
@@ -41,7 +41,7 @@ public class ServiceBase<E extends ModeloBase> {
     }
 
     // Deleta o registro conforme o id informado
-    void delete(String id){
+    public void delete(String id){
         for (E registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
                 dados.remove(registro);
