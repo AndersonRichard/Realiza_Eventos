@@ -43,4 +43,9 @@ public class Opcao extends ModeloBase{
                 this.nome,
                 this.descricao);
     }
+    public Opcao clone(){
+        Opcao clone = new Opcao(this.nome, this.descricao);
+        clone.id = this.id;
+        return clone;
+    }
 }

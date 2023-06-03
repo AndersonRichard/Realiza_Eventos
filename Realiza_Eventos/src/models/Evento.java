@@ -70,4 +70,9 @@ public class Evento extends ModeloBase {
                 this.nome,
                 this.descricao);
     }
+    public Evento clone(){
+        Evento clone = new Evento(this.nome, this.descricao);
+        clone.id = this.id;
+        return clone;
+    }
 }
