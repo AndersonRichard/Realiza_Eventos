@@ -88,7 +88,7 @@ public class Endereco extends ModeloBase {
     @Override
     public String toString() {
         return String.format("""
-                %s
+                Id: %s
                 Rua: %s
                 Numero: %s
                 Bairro: %s
@@ -98,16 +98,16 @@ public class Endereco extends ModeloBase {
                 Estado: %s
                 País: %s
                 """,
-                super.toString(),
-                this.getRua(),
+                this.id,
+                this.rua,
                 this.numero,
-                this.getBairro(),
-                this.getComplemento(),
-                this.getCep(),
-                this.getCidade(),
-                this.getCidade(),
-                this.getEstado(),
-                this.getPais());
+                this.bairro,
+                this.complemento,
+                this.cep,
+                this.cidade,
+                this.cidade,
+                this.estado,
+                this.pais);
     }
 
 }
