@@ -2,7 +2,6 @@ package views;
 
 import models.Evento;
 import services.EventoService;
-
 import java.util.Scanner;
 
 public class EventosView {
@@ -17,7 +16,7 @@ public class EventosView {
             System.out.println("4. Editar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -59,13 +58,12 @@ public class EventosView {
             System.out.println("2. Listar todos");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
             EventoService eventoService = new EventoService();
             switch (opcao) {
                 case 1:
                     System.out.println("Insira o ID: ");
                     String pesquisaEvento = scanner.nextLine();
-                    scanner.nextLine();
                     Evento pesquisaId = eventoService.read(pesquisaEvento);
                     if(pesquisaId == null){
                         System.out.println("Solicitação não encontrada");
@@ -75,7 +73,6 @@ public class EventosView {
                     break;
                 case 2:
                     System.out.println("Lista de todas as solicitações:");
-                    System.out.println(eventoService.dados);
                     for (Evento evento : eventoService.read()) {
                         System.out.println(evento);
                     }
@@ -112,7 +109,7 @@ public class EventosView {
             System.out.println("3. Salvar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:

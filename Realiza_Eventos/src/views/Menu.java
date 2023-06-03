@@ -13,10 +13,10 @@ public class Menu {
             System.out.println("0. Sair");
             System.out.print("Opção: ");
 
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
-                case 1://empresa
+                case 1:
                     MenuEmpresa menuEmpresa = new MenuEmpresa();
                     menuEmpresa.exibir();
                     break;

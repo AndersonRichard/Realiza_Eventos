@@ -16,7 +16,7 @@ public class ServicoView {
             System.out.println("4. Editar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -58,13 +58,12 @@ public class ServicoView {
             System.out.println("2. Listar todos");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
             ServicoService servicoService = new ServicoService();
             switch (opcao) {
                 case 1:
                     System.out.println("Insira o ID: ");
                     String pesquisaEvento = scanner.nextLine();
-                    scanner.nextLine();
                     Servico pesquisaId = servicoService.read(pesquisaEvento);
                     if(pesquisaId == null){
                         System.out.println("Solicitação não encontrada");
@@ -74,7 +73,6 @@ public class ServicoView {
                     break;
                 case 2:
                     System.out.println("Lista de todas as solicitações:");
-                    System.out.println(servicoService.dados);
                     for (Servico servico : servicoService.read()) {
                         System.out.println(servico);
                     }
@@ -111,7 +109,7 @@ public class ServicoView {
             System.out.println("3. Salvar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:

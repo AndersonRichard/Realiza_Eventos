@@ -15,7 +15,7 @@ public class MenuCliente {
             System.out.println("3. Voltar ao menu anterior");
             System.out.print("Opção: ");
 
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
