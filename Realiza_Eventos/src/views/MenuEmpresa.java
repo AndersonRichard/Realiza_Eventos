@@ -1,5 +1,7 @@
 package views;
 
+import models.Cliente;
+
 import java.util.Scanner;
 
 public class MenuEmpresa {
@@ -25,7 +27,24 @@ public class MenuEmpresa {
                     solicitacaoView.exibir();
                     break;
                 case 2:
-
+                    EventosView eventosView = new EventosView();
+                    eventosView.exibir();
+                    break;
+                case 3:
+                    ServicoView servicoView = new ServicoView();
+                    servicoView.exibir();
+                    break;
+                case 4:
+                    OpcaoView opcaoView = new OpcaoView();
+                    opcaoView.exibir();
+                    break;
+                case 5:
+                    EnderecoView enderecoView = new EnderecoView();
+                    enderecoView.exibir();
+                    break;
+                case 6:
+                    ClienteView clienteView = new Cliente();
+                    clienteView.exibir();
                     break;
                 case 0:
                     return;
