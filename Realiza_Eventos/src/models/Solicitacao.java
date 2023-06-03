@@ -94,7 +94,7 @@ public class Solicitacao extends ModeloBase {
                 Id: %s
                 Data/Hora da solicitação: %s
                 Evento: %s
-                Endereço slecionado: %s
+                Endereço selecionado: %s
                 Início do evento: %s
                 Término do evento: %s
                 Cliente: %s
@@ -102,11 +102,13 @@ public class Solicitacao extends ModeloBase {
                 """,
                 this.id,
                 this.dataHoraDaSolicitacao,
-                this.evento,
-                this.enderecoSelecionado,
+                this.evento.getNome(),
+                this.enderecoSelecionado.getRua() + ", " + this.enderecoSelecionado.getNumero() + ", " +
+                        this.enderecoSelecionado.getBairro() + ", " + this.enderecoSelecionado.getCidade() + ", " +
+                        this.enderecoSelecionado.getEstado(),
                 this.inicioEventoDataHora,
                 this.terminoEventoDataHora,
-                this.cliente,
+                this.cliente.getNome(),
                 this.observacoes);
     }
 
