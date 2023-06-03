@@ -1,7 +1,5 @@
 package views;
 
-import models.Cliente;
-
 import java.util.Scanner;
 
 public class MenuEmpresa {
@@ -43,7 +41,7 @@ public class MenuEmpresa {
                     enderecoView.exibir();
                     break;
                 case 6:
-                    ClienteView clienteView = new Cliente();
+                    ClienteView clienteView = new ClienteView();
                     clienteView.exibir();
                     break;
                 case 0:
