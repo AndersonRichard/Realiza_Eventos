@@ -45,12 +45,12 @@ public class Servico extends ModeloBase {
     @Override
     public String toString() {
         return String.format("""
-                %s
+                Id: %s
                 Nome: %s
                 Descrição: %s
                 """,
-                super.toString(),
-                this.getNome(),
-                this.getDescricao());
+                this.id,
+                this.nome,
+                this.descricao);
     }
 }
