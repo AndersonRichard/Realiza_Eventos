@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class Opcao extends ModeloBase{
 
-    String nome;
-    String descricao;
+    private String nome;
+    private String descricao;
 
     public Opcao (String nome, String descricao) {
         this.nome = nome;
@@ -35,12 +35,12 @@ public class Opcao extends ModeloBase{
 
     public String toString() {
         return String.format("""
-                %s
+                Id: %s
                 Nome: %s
                 Descrição: %s
                 """,
-                super.toString(),
-                this.getNome(),
-                this.getDescricao());
+                this.id,
+                this.nome,
+                this.descricao);
     }
 }
