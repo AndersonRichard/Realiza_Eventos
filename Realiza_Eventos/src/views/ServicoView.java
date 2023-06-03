@@ -66,6 +66,10 @@ public class ServicoView {
                     String pesquisaEvento = scanner.nextLine();
                     scanner.nextLine();
                     Servico pesquisaId = servicoService.read(pesquisaEvento);
+                    if(pesquisaId == null){
+                        System.out.println("Solicitação não encontrada");
+                        break;
+                    }
                     System.out.println(pesquisaId);
                     break;
                 case 2:

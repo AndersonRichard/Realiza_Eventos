@@ -67,6 +67,10 @@ public class EventosView {
                     String pesquisaEvento = scanner.nextLine();
                     scanner.nextLine();
                     Evento pesquisaId = eventoService.read(pesquisaEvento);
+                    if(pesquisaId == null){
+                        System.out.println("Solicitação não encontrada");
+                        break;
+                    }
                     System.out.println(pesquisaId);
                     break;
                 case 2:
