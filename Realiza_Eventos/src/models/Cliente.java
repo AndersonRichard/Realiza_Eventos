@@ -46,5 +46,9 @@ public class Cliente extends ModeloBase{
                 this.telefone,
                 this.email);
     }
-
+    public Cliente clone(){
+        Cliente clone = new Cliente(this.nome, this.telefone, this.email);
+        clone.id = this.id;
+        return clone;
+    }
 }
