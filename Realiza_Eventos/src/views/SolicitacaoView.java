@@ -2,6 +2,8 @@ package views;
 
 import models.Solicitacao;
 import services.SolicitacaoService;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SolicitacaoView {
@@ -15,6 +17,7 @@ public class SolicitacaoView {
             System.out.println("|                                      |");
             System.out.println("|   1. Consultar                       |");
             System.out.println("|   2. Deletar                         |");
+            System.out.println("|   3. Gerar Relatório                 |");
             System.out.println("|   0. Voltar                          |");
             System.out.println("|                                      |");
             System.out.println("+--------------------------------------+");
@@ -29,6 +32,16 @@ public class SolicitacaoView {
                     break;
                 case 2:
                     deletar();
+                    break;
+                case 3:
+                    Solicitacao solicitacaoSelecionada = selecionar();
+                    if (solicitacaoSelecionada != null){
+                        SolicitacaoService solicitacaoService = new SolicitacaoService();
+                        System.out.println(solicitacaoService.exportTxt(solicitacaoSelecionada));
+                        System.out.println("Relatório gerado com sucesso!");
+                        break;
+                    }
+                    System.out.println("Nenhuma solicitação foi selecionada.");
                     break;
                 case 0:
                     System.out.println();
@@ -85,6 +98,54 @@ public class SolicitacaoView {
                 }
             }
     }
+
+    public Solicitacao selecionar(){
+        Scanner scanner = new Scanner(System.in);
+        SolicitacaoService solicitacaoService = new SolicitacaoService();
+
+        while (true) {
+            System.out.println("Escolha uma opção:");
+            System.out.println("1. Selecionar por Id");
+            System.out.println("2. Selecionar na lista");
+            System.out.println("0. Voltar");
+            System.out.print("Opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o Id: ");
+                    Solicitacao solicitacaoEncontrada = solicitacaoService.read(scanner.nextLine());
+                    if (solicitacaoEncontrada == null) {
+                        System.out.println("Solicitação não localizada!");
+                        break;
+                    }
+                    return solicitacaoEncontrada;
+                case 2:
+                    ArrayList<Solicitacao> solicitacoes = solicitacaoService.read();
+                    while(true){
+                        if (solicitacoes.size() > 0){ System.out.println(" -- OPÇÕES --"); }
+                        for (int i = 0; i < solicitacoes.size(); i++){
+                            System.out.printf("%d. %s\n", i + 1, "Solicitação_" + solicitacoes.get(i).getId());
+                        }
+                        System.out.println("0. Voltar");
+                        System.out.print("Selecione uma opção: ");
+                        opcao = Integer.parseInt(scanner.nextLine());
+                        if (opcao == 0) { break; }
+                        Solicitacao solicitacaoSelecionada = solicitacoes.get(opcao - 1);
+                        if (solicitacaoSelecionada != null){
+                            return solicitacaoSelecionada;
+                        }
+                        System.out.println("Opção inválida. Tente novamente.");
+                    }
+                    break;
+                case 0:
+                    return null;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
     public void deletar() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o ID:");
