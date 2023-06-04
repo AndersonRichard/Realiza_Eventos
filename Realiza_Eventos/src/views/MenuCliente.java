@@ -9,25 +9,32 @@ import java.util.Scanner;
 
 public class MenuCliente {
     public void exibir() {
-        System.out.println("***REALIZA EVENTOS***");
+        System.out.println("+--------------------------------------+");
+        System.out.println("|       ***REALIZA EVENTOS***          |");
+        System.out.println("+--------------------------------------+");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Solicitar orçamento");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------+");
+            System.out.println("|                                      |");
+            System.out.println("|  1. Solicitar orçamento              |");
+            System.out.println("|  0. Voltar                           |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
 
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
+                    System.out.println();
                     solicitarOrcamento();
                     break;
                 case 0:
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -45,16 +52,22 @@ public class MenuCliente {
         String observacoes = "";
 
         while(true){
-            System.out.println(" Preencha o formulário de Solicitação");
-            System.out.println(" 1. Evento: " + (eventoSelecionado != null ? eventoSelecionado.getNome() : ""));
-            System.out.println(" 2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.getRua() : ""));
-            System.out.println(" 3. Horário: " + (dataHoraDeInicio != null ? dataHoraDeInicio + " - ": "") + (dataHoraDeTermino != null ? dataHoraDeTermino.toString() : ""));
-            System.out.println(" 4. Contato: " + (cliente != null ? cliente.getNome() + " | " + cliente.getTelefone() : ""));
-            System.out.println(" 5. Observações: " + observacoes);
-            System.out.println(" 6. Enviar solicitação");
-            System.out.println(" 7. Cancelar");
-
+            System.out.println("+--------------------------------------+");
+            System.out.println("|  Preencha o formulário               |");
+            System.out.println("|      de Solicitação                  |");
+            System.out.println("|                                      |");
+            System.out.println("|  1. Evento: " + (eventoSelecionado != null ? eventoSelecionado.getNome() : "") + "                         |");
+            System.out.println("|  2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.getRua() : "") + "                       |");
+            System.out.println("|  3. Horário: " + (dataHoraDeInicio != null ? dataHoraDeInicio + " - " : "") + (dataHoraDeTermino != null ? dataHoraDeTermino.toString() : "") + "                        |");
+            System.out.println("|  4. Contato: " + (cliente != null ? cliente.getNome() + " | " + cliente.getTelefone() : "") + "                        |");
+            System.out.println("|  5. Observações: " + observacoes + "                    |");
+            System.out.println("|  6. Enviar solicitação               |");
+            System.out.println("|  7. Cancelar                         |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
+            System.out.println();
             switch (opcao){
                 case 1:
                     eventoSelecionado = selecionarEvento(scanner, eventosView);
