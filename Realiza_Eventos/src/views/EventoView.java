@@ -299,7 +299,7 @@ public class EventoView {
         Endereco enderecoSelecionado;
         while (true) {
             System.out.println("+------------------------------------+");
-            System.out.println("|   Endereço do evento " + eventoEncontrado.getNome()));
+            System.out.println("|   Endereço do evento " + eventoEncontrado.getNome());
             System.out.println("|                                    |");
             System.out.println("|   1. Listar endereços associados   |");
             System.out.println("|   2. Associar existente            |");
