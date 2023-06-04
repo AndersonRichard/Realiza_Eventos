@@ -55,6 +55,7 @@ public class Servico extends ModeloBase {
     }
     public Servico clone(){
         Servico clone = new Servico(this.nome, this.descricao);
+        clone.opcoes = this.opcoes;
         clone.id = this.id;
         return clone;
     }

@@ -14,6 +14,8 @@ public class Solicitacao extends ModeloBase {
     private Cliente cliente;
     private String observacoes;
 
+    public Solicitacao(){}
+
     public Solicitacao (Date dataHoraDaSolicitacao, Evento evento, Endereco enderecoSelecionado, Date inicioEventoDataHora, Date terminoEventoDataHora, Cliente cliente, String observacoes) {
         this.dataHoraDaSolicitacao = dataHoraDaSolicitacao;
         this.evento = evento;
