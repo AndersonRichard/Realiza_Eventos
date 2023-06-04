@@ -4,7 +4,6 @@ import models.*;
 import services.SolicitacaoService;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class MenuCliente {
@@ -46,8 +45,8 @@ public class MenuCliente {
 
         Evento eventoSelecionado = null;
         Endereco enderecoSelecionado = null;
-        Date dataHoraDeInicio = null;
-        Date dataHoraDeTermino = null;
+        String dataHoraDeInicio = null;
+        String dataHoraDeTermino = null;
         Cliente cliente = null;
         String observacoes = "";
 
@@ -82,9 +81,9 @@ public class MenuCliente {
                 case 3:
                     System.out.println("Preencha os horários: ");
                     System.out.print("Inicio: ");
-                    dataHoraDeInicio = new Date(scanner.nextLine());
+                    dataHoraDeInicio = new String(scanner.nextLine());
                     System.out.print("Termino: ");
-                    dataHoraDeTermino = new Date(scanner.nextLine());
+                    dataHoraDeTermino = new String(scanner.nextLine());
                     break;
                 case 4:
                     System.out.println("Preencha as informações para contato");
@@ -115,8 +114,8 @@ public class MenuCliente {
                     solicitacao.setDataHoraDaSolicitacao(new Date());
                     solicitacao.setEnderecoSelecionado(enderecoSelecionado);
                     solicitacao.setEvento(eventoSelecionado);
-                    solicitacao.setInicioEventoDataHora(dataHoraDeInicio);
-                    solicitacao.setTerminoEventoDataHora(dataHoraDeTermino);
+                    solicitacao.setInicioEventoDataHora((dataHoraDeInicio));
+                    solicitacao.setTerminoEventoDataHora((dataHoraDeTermino));
                     solicitacao.setCliente(cliente);
                     solicitacao.setObservacoes(observacoes);
                     solicitacaoService.create(solicitacao);

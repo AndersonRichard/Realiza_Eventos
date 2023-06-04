@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,14 +10,14 @@ public class Solicitacao extends ModeloBase {
     private Evento evento;
     private ArrayList<Servico> servicosSelecionados;
     private Endereco enderecoSelecionado;
-    private Date inicioEventoDataHora;
-    private Date terminoEventoDataHora;
+    private String inicioEventoDataHora;
+    private String terminoEventoDataHora;
     private Cliente cliente;
     private String observacoes;
 
     public Solicitacao(){}
 
-    public Solicitacao (Date dataHoraDaSolicitacao, Evento evento, Endereco enderecoSelecionado, Date inicioEventoDataHora, Date terminoEventoDataHora, Cliente cliente, String observacoes) {
+    public Solicitacao (Date dataHoraDaSolicitacao, Evento evento, Endereco enderecoSelecionado, String inicioEventoDataHora, String terminoEventoDataHora, Cliente cliente, String observacoes) {
         this.dataHoraDaSolicitacao = dataHoraDaSolicitacao;
         this.evento = evento;
         this.enderecoSelecionado = enderecoSelecionado;
@@ -30,7 +31,10 @@ public class Solicitacao extends ModeloBase {
     public Date getDataHoraDaSolicitacao() {
         return dataHoraDaSolicitacao;
     }
-
+    public String getDataHoraDaSolicitacaoStr() {
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return formatador.format(this.dataHoraDaSolicitacao);
+    }
     public void setDataHoraDaSolicitacao(Date dataHoraDaSolicitacao) {
         this.dataHoraDaSolicitacao = dataHoraDaSolicitacao;
     }
@@ -59,19 +63,19 @@ public class Solicitacao extends ModeloBase {
         this.enderecoSelecionado = enderecoSelecionado;
     }
 
-    public Date getInicioEventoDataHora() {
+    public String getInicioEventoDataHora() {
         return inicioEventoDataHora;
     }
 
-    public void setInicioEventoDataHora(Date inicioEventoDataHora) {
+    public void setInicioEventoDataHora(String inicioEventoDataHora) {
         this.inicioEventoDataHora = inicioEventoDataHora;
     }
 
-    public Date getTerminoEventoDataHora() {
+    public String getTerminoEventoDataHora() {
         return terminoEventoDataHora;
     }
 
-    public void setTerminoEventoDataHora(Date terminoEventoDataHora) {
+    public void setTerminoEventoDataHora(String terminoEventoDataHora) {
         this.terminoEventoDataHora = terminoEventoDataHora;
     }
 
@@ -103,7 +107,7 @@ public class Solicitacao extends ModeloBase {
                 Observações: %s
                 """,
                 this.id,
-                this.dataHoraDaSolicitacao,
+                this.getDataHoraDaSolicitacaoStr(),
                 this.evento.getNome(),
                 this.enderecoSelecionado.getRua() + ", " + this.enderecoSelecionado.getNumero() + ", " +
                         this.enderecoSelecionado.getBairro() + ", " + this.enderecoSelecionado.getCidade() + ", " +
