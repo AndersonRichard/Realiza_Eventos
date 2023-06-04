@@ -11,13 +11,17 @@ public class EnderecoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Consultar");
-            System.out.println("3. Deletar");
-            System.out.println("4. Editar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+-------------------------------+");
+            System.out.println("|  Escolha uma opção:          |");
+            System.out.println("|                               |");
+            System.out.println("|  1. Cadastrar                 |");
+            System.out.println("|  2. Consultar                 |");
+            System.out.println("|  3. Deletar                   |");
+            System.out.println("|  4. Editar                    |");
+            System.out.println("|  0. Voltar                    |");
+            System.out.println("|                               |");
+            System.out.println("+-------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -37,6 +41,7 @@ public class EnderecoView {
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -74,10 +79,14 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Pesquisar por Id");
-            System.out.println("2. Listar todos");
-            System.out.println("0. Voltar");
+            System.out.println("+-------------------------------+");
+            System.out.println("|  Escolha uma opção:          |");
+            System.out.println("|                               |");
+            System.out.println("|  1. Pesquisar por Id          |");
+            System.out.println("|  2. Listar todos              |");
+            System.out.println("|  0. Voltar                    |");
+            System.out.println("|                               |");
+            System.out.println("+-------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
@@ -197,10 +206,14 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Selecione um ENDEREÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
+            System.out.println("+-------------------------------+");
+            System.out.println("|  Selecione um ENDEREÇO        |");
+            System.out.println("|                               |");
+            System.out.println("|  1. Por Id                    |");
+            System.out.println("|  2. Da lista                  |");
+            System.out.println("|  0. Voltar                    |");
+            System.out.println("|                               |");
+            System.out.println("+-------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
@@ -243,10 +256,14 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Selecione um ENDEREÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
+            System.out.println("+-------------------------------+");
+            System.out.println("|  Selecione um ENDEREÇO        |");
+            System.out.println("|                               |");
+            System.out.println("|  1. Por Id                    |");
+            System.out.println("|  2. Da lista                  |");
+            System.out.println("|  0. Voltar                    |");
+            System.out.println("|                               |");
+            System.out.println("+-------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
