@@ -11,8 +11,7 @@ public class MenuEmpresa {
 
         while (true) {
             System.out.println("+--------------------------------------+");
-            System.out.println("|     Bem vindo ao Menu Administração  |");
-            System.out.println("|     Escolha uma opção:               |");
+            System.out.println("|   Bem vindo ao Menu Administração    |");
             System.out.println("|                                      |");
             System.out.println("|   1. Solicitação                     |");
             System.out.println("|   2. Evento                          |");
