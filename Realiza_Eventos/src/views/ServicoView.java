@@ -5,6 +5,7 @@ import models.Servico;
 import services.OpcaoService;
 import services.ServicoService;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,7 +47,7 @@ public class ServicoView {
             }
         }
     }
-    public void cadastrar(){
+    public Servico cadastrar(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Preencha as informações:");
         System.out.print("Nome: ");
@@ -56,6 +57,7 @@ public class ServicoView {
         Servico servico = new Servico(nome, descricao);
         ServicoService servicoService = new ServicoService();
         servicoService.create(servico);
+        return servico;
     }
     public void consultar(){
         Scanner scanner = new Scanner(System.in);
@@ -140,6 +142,51 @@ public class ServicoView {
         }
     }
 
+    public Servico selecionar(ArrayList<Servico> servicosDisponiveis){
+        Scanner scanner = new Scanner(System.in);
+        ServicoService servicoService = new ServicoService();
+
+        while (true) {
+            System.out.println("Selecione um SERVIÇO");
+            System.out.println("1. Por Id");
+            System.out.println("2. Da lista");
+            System.out.println("0. Voltar");
+            System.out.print("Opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o Id: ");
+                    Servico servicoEncontrado = servicoService.read(scanner.nextLine());
+                    if (servicoEncontrado == null) {
+                        System.out.println("Opção não localizada!");
+                        break;
+                    }
+                    return servicoEncontrado;
+                case 2:
+                    while(true){
+                        if (servicosDisponiveis.size() > 0){ System.out.println(" -- SERVIÇOS --"); }
+                        for (int i = 0; i < servicosDisponiveis.size(); i++){
+                            System.out.printf("%d. %s\n", i + 1, servicosDisponiveis.get(i).getNome());
+                        }
+                        System.out.println("0. Voltar");
+                        System.out.print("Selecione uma opção: ");
+                        opcao = Integer.parseInt(scanner.nextLine());
+                        if (opcao == 0) { break; }
+                        Servico servicoSelecionado = servicosDisponiveis.get(opcao - 1);
+                        if (servicoSelecionado != null){
+                            return servicoSelecionado;
+                        }
+                        System.out.println("Opção inválida. Tente novamente.");
+                    }
+                    break;
+                case 0:
+                    return null;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
     public void deletar() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID: ");
