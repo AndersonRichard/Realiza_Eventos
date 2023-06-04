@@ -172,16 +172,16 @@ public class MenuCliente {
         // Selecionar os serviços
         ArrayList<Servico> servicosSelecionados = new ArrayList<>();
         while (true) {
-            System.out.println("+--------------------------------------+");
-            System.out.println("|Selecione o(s) serviço(s) desejado(s):|");
+            System.out.println("+------------------------------------------------+");
+            System.out.println("|  Selecione o(s) serviço(s) desejado(s):        |");
             ArrayList<Servico> servicosDoEvento = eventoSelecionado.getServicos();
             for (int i = 0; i < servicosDoEvento.size(); i++){
                 Servico servico = servicosDoEvento.get(i);
-                System.out.printf("%d. [%s] %s\n", i + 1, servicosSelecionados.contains(servico) ? "X" : " ", servico.getNome());
+                System.out.printf("| %d. [%s] %s\n", i + 1, servicosSelecionados.contains(servico) ? "X" : " ", servico.getNome() + "                                  |");
             }
-            System.out.println("|C. Confirmar                          +");
-            System.out.println("|0. Voltar                             +");
-            System.out.println("+--------------------------------------+");
+            System.out.println("|  C. Confirmar                                  +");
+            System.out.println("|  0. Voltar                                     |");
+            System.out.println("+------------------------------------------------|");
             System.out.print("Digite uma opção: ");
             String opcao = scanner.nextLine().toUpperCase();
             switch (opcao){
