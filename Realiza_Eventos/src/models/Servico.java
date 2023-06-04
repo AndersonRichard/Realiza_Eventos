@@ -6,7 +6,7 @@ public class Servico extends ModeloBase {
 
     private String nome;
     private String descricao;
-    private ArrayList<String> opcoes;
+    private ArrayList<Opcao> opcoes;
 
     public Servico(String nome, String descricao) {
         this.nome = nome;
@@ -34,11 +34,11 @@ public class Servico extends ModeloBase {
         this.descricao = descricao;
     }
 
-    public ArrayList<String> getOpcoes() {
+    public ArrayList<Opcao> getOpcoes() {
         return opcoes;
     }
 
-    public void setOpcoes(ArrayList<String> opcoes) {
+    public void setOpcoes(ArrayList<Opcao> opcoes) {
         this.opcoes = opcoes;
     }
 

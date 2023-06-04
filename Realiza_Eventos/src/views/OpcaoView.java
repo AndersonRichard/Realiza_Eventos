@@ -41,7 +41,7 @@ public class OpcaoView {
         }
     }
 
-    public void cadastrar(){
+    public Opcao cadastrar(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Preencha os campos:");
@@ -54,6 +54,7 @@ public class OpcaoView {
 
         OpcaoService opcaoService = new OpcaoService();
         opcaoService.create(opcao);
+        return opcao;
     }
 
     public void consultar(){
@@ -71,13 +72,13 @@ public class OpcaoView {
             switch (opcao) {
                 case 1:
                     System.out.println("Digite o Id: ");
-                    Opcao opcaoEncontrado = opcaoService.read(scanner.nextLine());
-                    if (opcaoEncontrado == null) {
+                    Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
+                    if (opcaoEncontrada == null) {
                         System.out.println("Opção não localizada!");
                         break;
                     }
                     System.out.println(" -- OPÇÃO --");
-                    System.out.println(opcaoEncontrado);
+                    System.out.println(opcaoEncontrada);
                     break;
                 case 2:
                     ArrayList<Opcao> opcoes = opcaoService.read();
@@ -89,6 +90,99 @@ public class OpcaoView {
                     break;
                 case 0:
                     return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    public Opcao selecionar(){
+        Scanner scanner = new Scanner(System.in);
+        OpcaoService opcaoService = new OpcaoService();
+
+        while (true) {
+            System.out.println("Escolha uma opção:");
+            System.out.println("1. Selecionar por Id");
+            System.out.println("2. Selecionar na lista");
+            System.out.println("0. Voltar");
+            System.out.print("Opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o Id: ");
+                    Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
+                    if (opcaoEncontrada == null) {
+                        System.out.println("Opção não localizada!");
+                        break;
+                    }
+                    return opcaoEncontrada;
+                case 2:
+                    ArrayList<Opcao> opcoes = opcaoService.read();
+                    while(true){
+                        if (opcoes.size() > 0){ System.out.println(" -- OPÇÕES --"); }
+                        for (int i = 0; i < opcoes.size(); i++){
+                            System.out.printf("%d. %s\n", i + 1, opcoes.get(i).getNome());
+                        }
+                        System.out.println("0. Voltar");
+                        System.out.print("Selecione uma opção: ");
+                        opcao = Integer.parseInt(scanner.nextLine());
+                        if (opcao == 0) { break; }
+                        Opcao opcaoSelecionada = opcoes.get(opcao - 1);
+                        if (opcaoSelecionada != null){
+                            return opcaoSelecionada;
+                        }
+                        System.out.println("Opção inválida. Tente novamente.");
+                    }
+                    break;
+                case 0:
+                    return null;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    public Opcao selecionar(ArrayList<Opcao> opcoesDisponiveis){
+        Scanner scanner = new Scanner(System.in);
+        OpcaoService opcaoService = new OpcaoService();
+
+        while (true) {
+            System.out.println("Selecione uma OPÇÃO");
+            System.out.println("1. Por Id");
+            System.out.println("2. Da lista");
+            System.out.println("0. Voltar");
+            System.out.print("Opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o Id: ");
+                    Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
+                    if (opcaoEncontrada == null) {
+                        System.out.println("Opção não localizada!");
+                        break;
+                    }
+                    return opcaoEncontrada;
+                case 2:
+                    while(true){
+                        if (opcoesDisponiveis.size() > 0){ System.out.println(" -- OPÇÕES --"); }
+                        for (int i = 0; i < opcoesDisponiveis.size(); i++){
+                            System.out.printf("%d. %s\n", i + 1, opcoesDisponiveis.get(i).getNome());
+                        }
+                        System.out.println("0. Voltar");
+                        System.out.print("Selecione uma opção: ");
+                        opcao = Integer.parseInt(scanner.nextLine());
+                        if (opcao == 0) { break; }
+                        Opcao opcaoSelecionada = opcoesDisponiveis.get(opcao - 1);
+                        if (opcaoSelecionada != null){
+                            return opcaoSelecionada;
+                        }
+                        System.out.println("Opção inválida. Tente novamente.");
+                    }
+                    break;
+                case 0:
+                    return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
