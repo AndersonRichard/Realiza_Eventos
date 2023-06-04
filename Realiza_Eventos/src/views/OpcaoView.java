@@ -11,13 +11,17 @@ public class OpcaoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Consultar");
-            System.out.println("3. Deletar");
-            System.out.println("4. Editar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------+");
+            System.out.println("|  Escolha uma opção:   |");
+            System.out.println("|                        |");
+            System.out.println("|  1. Cadastrar          |");
+            System.out.println("|  2. Consultar          |");
+            System.out.println("|  3. Deletar            |");
+            System.out.println("|  4. Editar             |");
+            System.out.println("|  0. Voltar             |");
+            System.out.println("|                        |");
+            System.out.println("+------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -37,6 +41,7 @@ public class OpcaoView {
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -44,12 +49,13 @@ public class OpcaoView {
     public Opcao cadastrar(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Preencha os campos:");
-        System.out.print("Nome: ");
+        System.out.println("+--------------------------------------+");
+        System.out.println("|     Digite o novo valor para:        |");
+        System.out.print("|   Nome: ");
         String nome = scanner.nextLine();
         System.out.print("Descrição: ");
         String descricao = scanner.nextLine();
-
+        System.out.println("+--------------------------------------+");
         Opcao opcao = new Opcao(nome, descricao);
 
         OpcaoService opcaoService = new OpcaoService();
@@ -62,11 +68,15 @@ public class OpcaoView {
         OpcaoService opcaoService = new OpcaoService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Pesquisar por Id");
-            System.out.println("2. Listar todos");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------+");
+            System.out.println("|  Selecione uma OPÇÃO   |");
+            System.out.println("|                        |");
+            System.out.println("|  1. Por Id             |");
+            System.out.println("|  2. Da lista           |");
+            System.out.println("|  0. Voltar             |");
+            System.out.println("|                        |");
+            System.out.println("+------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -75,6 +85,7 @@ public class OpcaoView {
                     Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
                     if (opcaoEncontrada == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     System.out.println(" -- OPÇÃO --");
@@ -92,6 +103,7 @@ public class OpcaoView {
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -101,11 +113,15 @@ public class OpcaoView {
         OpcaoService opcaoService = new OpcaoService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Selecionar por Id");
-            System.out.println("2. Selecionar na lista");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------+");
+            System.out.println("|  Selecione uma OPÇÃO   |");
+            System.out.println("|                        |");
+            System.out.println("|  1. Por Id             |");
+            System.out.println("|  2. Da lista           |");
+            System.out.println("|  0. Voltar             |");
+            System.out.println("|                        |");
+            System.out.println("+------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -114,6 +130,7 @@ public class OpcaoView {
                     Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
                     if (opcaoEncontrada == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     return opcaoEncontrada;
@@ -126,6 +143,7 @@ public class OpcaoView {
                         }
                         System.out.println("0. Voltar");
                         System.out.print("Selecione uma opção: ");
+                        System.out.println();
                         opcao = Integer.parseInt(scanner.nextLine());
                         if (opcao == 0) { break; }
                         Opcao opcaoSelecionada = opcoes.get(opcao - 1);
@@ -133,12 +151,14 @@ public class OpcaoView {
                             return opcaoSelecionada;
                         }
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
                     break;
                 case 0:
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -148,11 +168,15 @@ public class OpcaoView {
         OpcaoService opcaoService = new OpcaoService();
 
         while (true) {
-            System.out.println("Selecione uma OPÇÃO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------+");
+            System.out.println("|  Selecione uma OPÇÃO   |");
+            System.out.println("|                        |");
+            System.out.println("|  1. Por Id             |");
+            System.out.println("|  2. Da lista           |");
+            System.out.println("|  0. Voltar             |");
+            System.out.println("|                        |");
+            System.out.println("+------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -161,6 +185,7 @@ public class OpcaoView {
                     Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
                     if (opcaoEncontrada == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     return opcaoEncontrada;
@@ -172,6 +197,7 @@ public class OpcaoView {
                         }
                         System.out.println("0. Voltar");
                         System.out.print("Selecione uma opção: ");
+                        System.out.println();
                         opcao = Integer.parseInt(scanner.nextLine());
                         if (opcao == 0) { break; }
                         Opcao opcaoSelecionada = opcoesDisponiveis.get(opcao - 1);
@@ -179,12 +205,14 @@ public class OpcaoView {
                             return opcaoSelecionada;
                         }
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
                     break;
                 case 0:
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -192,7 +220,7 @@ public class OpcaoView {
     public void deletar(){
         Scanner scanner = new Scanner(System.in);
         OpcaoService opcaoService = new OpcaoService();
-        System.out.println("Digite o Id: ");
+        System.out.print("Digite o Id: ");
         opcaoService.delete(scanner.nextLine());
     }
 
@@ -200,40 +228,52 @@ public class OpcaoView {
         Scanner scanner = new Scanner(System.in);
         OpcaoService opcaoService = new OpcaoService();
 
-        System.out.println("Digite o Id: ");
+        System.out.print("Digite o Id: ");
         Opcao opcaoEncontrada = opcaoService.read(scanner.nextLine());
         if (opcaoEncontrada == null) {
             System.out.println("Opção não localizada!");
+            System.out.println();
             return;
         }
 
         while (true) {
-            System.out.println("Escolha um campo para editar:");
-            System.out.println("1. Nome: " + opcaoEncontrada.getNome());
-            System.out.println("2. Descrição: " + opcaoEncontrada.getDescricao());
-            System.out.println("3. Salvar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+---------------------------+");
+            System.out.println("|   Escolha um campo para   |");
+            System.out.println("|          editar:          |");
+            System.out.println("|                           |");
+            System.out.println("|   1. Nome: " + opcaoEncontrada.getNome() + "   |");
+            System.out.println("|   2. Descrição: " + opcaoEncontrada.getDescricao() + "   |");
+            System.out.println("|   3. Salvar               |");
+            System.out.println("|   0. Voltar               |");
+            System.out.println("|                           |");
+            System.out.println("+---------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o novo valor para: ");
-                    System.out.print("Nome: ");
+                    System.out.println("+--------------------------------------+");
+                    System.out.println("|     Digite o novo valor para:        |");
+                    System.out.print("|   Nome: ");
                     opcaoEncontrada.setNome(scanner.nextLine());
+                    System.out.println("+--------------------------------------+");
                     break;
                 case 2:
-                    System.out.println("Digite o novo valor para: ");
-                    System.out.print("Descrição: ");
+                    System.out.println("+--------------------------------------+");
+                    System.out.println("|     Digite o novo valor para:        |");
+                    System.out.print("|     Descrição: ");
                     opcaoEncontrada.setDescricao(scanner.nextLine());
+                    System.out.println("+--------------------------------------+");
                     break;
                 case 3:
                     opcaoService.update(opcaoEncontrada);
                     System.out.println("Seu registro foi atualizado com sucesso!");
+                    System.out.println();
                 case 0:
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
