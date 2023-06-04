@@ -11,10 +11,14 @@ public class ClienteView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Consultar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------+");
+            System.out.println("|  Escolha uma opção:   |");
+            System.out.println("|                        |");
+            System.out.println("|  1. Consultar          |");
+            System.out.println("|  0. Voltar             |");
+            System.out.println("|                        |");
+            System.out.println("+------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -34,11 +38,15 @@ public class ClienteView {
         ClienteService clienteService = new ClienteService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Pesquisar por Id");
-            System.out.println("2. Listar todos");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+-------------------------------+");
+            System.out.println("|  Escolha uma opção:          |");
+            System.out.println("|                               |");
+            System.out.println("|  1. Pesquisar por Id          |");
+            System.out.println("|  2. Listar todos              |");
+            System.out.println("|  0. Voltar                    |");
+            System.out.println("|                               |");
+            System.out.println("+-------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -47,6 +55,7 @@ public class ClienteView {
                     Cliente clienteEncontrado = clienteService.read(scanner.nextLine());
                     if (clienteEncontrado == null) {
                         System.out.println("Cliente não localizado!");
+                        System.out.println();
                         break;
                     }
                     System.out.println(" -- CLIENTE --");
@@ -64,6 +73,7 @@ public class ClienteView {
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
