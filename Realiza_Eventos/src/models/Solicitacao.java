@@ -8,7 +8,6 @@ public class Solicitacao extends ModeloBase {
 
     private Date dataHoraDaSolicitacao;
     private Evento evento;
-    private ArrayList<Servico> servicosSelecionados;
     private Endereco enderecoSelecionado;
     private String inicioEventoDataHora;
     private String terminoEventoDataHora;
@@ -25,7 +24,6 @@ public class Solicitacao extends ModeloBase {
         this.terminoEventoDataHora = terminoEventoDataHora;
         this.cliente = cliente;
         this.observacoes = observacoes;
-        servicosSelecionados = new ArrayList<>();
     }
 
     public Date getDataHoraDaSolicitacao() {
@@ -45,14 +43,6 @@ public class Solicitacao extends ModeloBase {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
-    }
-
-    public ArrayList<Servico> getServicosSelecionados() {
-        return servicosSelecionados;
-    }
-
-    public void setServicosSelecionados(ArrayList<Servico> servicosSelecionados) {
-        this.servicosSelecionados = servicosSelecionados;
     }
 
     public Endereco getEnderecoSelecionado() {
@@ -117,7 +107,6 @@ public class Solicitacao extends ModeloBase {
                 this.cliente.getNome(),
                 this.observacoes);
     }
-
     public Solicitacao clone() {
         Solicitacao clone = new Solicitacao(this.dataHoraDaSolicitacao, this.evento, this.enderecoSelecionado, this.inicioEventoDataHora, this.terminoEventoDataHora, this.cliente, this.observacoes);
         clone.id = this.id;
