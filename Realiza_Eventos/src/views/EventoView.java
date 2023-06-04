@@ -12,26 +12,29 @@ public class EventoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("+------------------------------------+");
-            System.out.println("|     Escolha uma opção:             |");
-            System.out.println("|                                    |");
-            System.out.println("|   1. Cadastrar                     |");
-            System.out.println("|   2. Consultar                     |");
-            System.out.println("|   3. Deletar                       |");
-            System.out.println("|   4. Editar                        |");
-            System.out.println("|   5. Gerenciar Serviços            |");
-            System.out.println("|   6. Gerenciar Endereços           |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------+");
+            System.out.println("|     Menu Evento                      |");
+            System.out.println("|     Escolha uma opção:               |");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Cadastrar                       |");
+            System.out.println("|   2. Consultar                       |");
+            System.out.println("|   3. Deletar                         |");
+            System.out.println("|   4. Editar                          |");
+            System.out.println("|   5. Gerenciar Serviços              |");
+            System.out.println("|   6. Gerenciar Endereços             |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
+                    System.out.println();
                     cadastrar();
                     break;
                 case 2:
+                    System.out.println();
                     consultar();
                     break;
                 case 3:
@@ -44,9 +47,11 @@ public class EventoView {
                     gerenciarServicos();
                     break;
                 case 6:
+                    System.out.println();
                     gerenciarEnderecos();
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -55,56 +60,56 @@ public class EventoView {
     }
     public void cadastrar(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("+------------------------------------+");
-        System.out.println("|     Preencha as informações:       |");
-        System.out.println("|                                    |");
-        System.out.println("|   Nome:                            |");
-        System.out.println("+------------------------------------+");
+        System.out.println("+--------------------------------------+");
+        System.out.println("|     Preencha as informações:         |");
+        System.out.print("|   Nome: ");
         String nome = scanner.nextLine();
-        System.out.println("+------------------------------------+");
-        System.out.println("|   Descrição:                       |");
-        System.out.println("+------------------------------------+");
+        System.out.print("|   Descrição: ");
         String descricao = scanner.nextLine();
-
+        System.out.println("+--------------------------------------+");
         Evento evento = new Evento(nome, descricao);
         EventoService eventoService = new EventoService();
         eventoService.create(evento);
+        System.out.println("Evento cadastrado com sucesso");
+        System.out.println();
     }
     public void consultar(){
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("+------------------------------------+");
-            System.out.println("|     Escolha uma opção:             |");
-            System.out.println("|                                    |");
-            System.out.println("|   1. Pesquisar por ID              |");
-            System.out.println("|   2. Listar todos                  |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------+");
+            System.out.println("|     Escolha uma opção:               |");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Pesquisar por ID                |");
+            System.out.println("|   2. Listar todos                    |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
             EventoService eventoService = new EventoService();
             switch (opcao) {
                 case 1:
-                    System.out.println("+------------------------------------+");
-                    System.out.println("|   Insira o ID:                     +");
-                    System.out.println("+------------------------------------+");
+                    System.out.print("Digite o ID:");
                     String pesquisaEvento = scanner.nextLine();
                     Evento pesquisaId = eventoService.read(pesquisaEvento);
                     if(pesquisaId == null){
                         System.out.println("Solicitação não encontrada");
+                        System.out.println();
                         break;
                     }
                     System.out.println(pesquisaId);
                     break;
                 case 2:
+                    System.out.println();
                     System.out.println("Lista de todas as solicitações:");
+                    System.out.println();
                     for (Evento evento : eventoService.read()) {
                         System.out.println(evento);
                     }
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -113,55 +118,52 @@ public class EventoView {
     }
     public void deletar() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("+------------------------------------+");
-        System.out.println("|   Insira o ID:                     +");
-        System.out.println("+------------------------------------+");
+        System.out.print("Digite o ID:");
         String deletaEvento = scanner.nextLine();
         EventoService eventoService = new EventoService();
         eventoService.delete(deletaEvento);
         System.out.println("Solicitação deletada com sucesso");
+        System.out.println();
     }
     public void editar(){
         Scanner scanner = new Scanner(System.in);
         EventoService eventoService = new EventoService();
-        System.out.println("+------------------------------------+");
-        System.out.println("|   Insira o ID:                     +");
-        System.out.println("+------------------------------------+");
+        System.out.print("Digite o ID:");
         Evento eventoEncontrado = eventoService.read(scanner.nextLine());
         if (eventoEncontrado == null) {
             System.out.println("Opção não localizada!");
+            System.out.println();
             return;
         }
 
         while (true) {
-            System.out.println("+------------------------------------+");
-            System.out.println("|     Escolha um campo para editar:  |");
-            System.out.println("|                                    |");
+            System.out.println();
+            System.out.println("+--------------------------------------+");
+            System.out.println("|     Escolha um campo para editar:    |");
+            System.out.println("|                                      |");
             System.out.println("|   1. Nome: " + eventoEncontrado.getNome());
             System.out.println("|   2. Descrição: " + eventoEncontrado.getDescricao());
-            System.out.println("|   3. Salvar                        |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("|   3. Salvar                          |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
-
+            System.out.println();
             switch (opcao) {
                 case 1:
-                    System.out.println("+------------------------------------+");
-                    System.out.println("|     Digite o novo valor para:      |");
-                    System.out.println("|                                    |");
-                    System.out.println("|   Nome:                            |");
-                    System.out.println("+------------------------------------+");
+                    System.out.println("+--------------------------------------+");
+                    System.out.println("|     Digite o novo valor para:        |");
+                    System.out.print("|   Nome: ");
                     eventoEncontrado.setNome(scanner.nextLine());
+                    System.out.println("+--------------------------------------+");
                     break;
                 case 2:
-                    System.out.println("+------------------------------------+");
-                    System.out.println("|     Digite o novo valor para:      |");
-                    System.out.println("|                                    |");
-                    System.out.println("|     Descrição                      |");
-                    System.out.println("+------------------------------------+");
+                    System.out.println("+--------------------------------------+");
+                    System.out.println("|     Digite o novo valor para:        |");
+                    System.out.print("|     Descrição: ");
                     eventoEncontrado.setDescricao(scanner.nextLine());
+                    System.out.println("+--------------------------------------+");
                     break;
                 case 3:
                     eventoService.update(eventoEncontrado);
@@ -177,25 +179,24 @@ public class EventoView {
         EventoService eventoService = new EventoService();
 
         while (true) {
-            System.out.println("+------------------------------------+");
-            System.out.println("|     Selecione um EVENTO            |");
-            System.out.println("|                                    |");
-            System.out.println("|   1. Por Id                        |");
-            System.out.println("|   2. Da lista                      |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------+");
+            System.out.println("|     Selecione um EVENTO              |");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Por Id                          |");
+            System.out.println("|   2. Da lista                        |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("+------------------------------------+");
-                    System.out.println("|   Insira o ID:                     +");
-                    System.out.println("+------------------------------------+");
+                    System.out.print("Digite o ID:");
                     Evento eventoEncontrado = eventoService.read(scanner.nextLine());
                     if (eventoEncontrado == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     return eventoEncontrado;
@@ -203,12 +204,15 @@ public class EventoView {
                     ArrayList<Evento> eventos = eventoService.read();
                     while(true){
                         if (eventos.size() > 0){ System.out.println(" -- EVENTOS --"); }
+                        System.out.println();
                         for (int i = 0; i < eventos.size(); i++){
                             System.out.printf("%d. %s\n", i + 1, eventos.get(i).getNome());
                         }
                         System.out.println("0. Voltar");
+                        System.out.println();
                         System.out.print("Selecione uma opção: ");
                         opcao = Integer.parseInt(scanner.nextLine());
+                        System.out.println();
                         if (opcao == 0) { break; }
                         Evento eventoSelecionado = eventos.get(opcao - 1);
                         if (eventoSelecionado != null){
@@ -225,6 +229,7 @@ public class EventoView {
         }
     }
     public void gerenciarServicos(){
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         ServicoView servicoView = new ServicoView();
         Evento eventoEncontrado = selecionar();
@@ -233,44 +238,50 @@ public class EventoView {
         ArrayList<Servico> servicos = eventoEncontrado.getServicos();
         Servico servicoSelecionado;
         while (true) {
-            System.out.println("+------------------------------------+");
+            System.out.println("+--------------------------------------+");
             System.out.println("|   Serviços do evento " + eventoEncontrado.getNome());
-            System.out.println("|                                    |");
-            System.out.println("|   1. Listar serviços associados    |");
-            System.out.println("|   2. Associar existente            |");
-            System.out.println("|   3. Cadastrar novo                |");
-            System.out.println("|   4. Desassociar serviço           |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Listar serviços associados      |");
+            System.out.println("|   2. Associar existente              |");
+            System.out.println("|   3. Cadastrar novo                  |");
+            System.out.println("|   4. Desassociar serviço             |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    if (servicos.size() > 0) { System.out.println(" -- SERVIÇOS --"); }
-                    else { System.out.println("Nenhum serviço associado!"); }
+                    if (servicos.size() > 0) { System.out.println(" -- SERVIÇOS --");
+                        System.out.println();}
+                    else { System.out.println("Nenhum serviço associado!");
+                        System.out.println(); }
                     for (Servico servico : servicos){
                         System.out.println(servico);
                         System.out.println("-----");
                     }
                     break;
                 case 2:
+                    System.out.println();
                     servicoSelecionado =  servicoView.selecionar();
                     if (servicoSelecionado == null) { break; }
                     servicos.add(servicoSelecionado);
                     eventoEncontrado.setServicos(servicos);
                     System.out.println("Serviço " + servicoSelecionado.getNome() + " associado!");
+                    System.out.println();
                     break;
                 case 3:
                     servicoSelecionado = servicoView.cadastrar();
                     servicos.add(servicoSelecionado);
                     eventoEncontrado.setServicos(servicos);
                     System.out.println("Serviço " + servicoSelecionado.getNome() + " associado!");
+                    System.out.println();
                     break;
                 case 4:
                     if (servicos.size() == 0) {
                         System.out.println("Nenhum serviço associado!");
+                        System.out.println();
                         break;
                     }
                     servicoSelecionado =  servicoView.selecionar(servicos);
@@ -278,11 +289,14 @@ public class EventoView {
                     servicos.remove(servicoSelecionado);
                     eventoEncontrado.setServicos(servicos);
                     System.out.println("Serviço " + servicoSelecionado.getNome() + " desassociado!");
+                    System.out.println();
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -295,23 +309,25 @@ public class EventoView {
         ArrayList<Endereco> enderecos = eventoEncontrado.getEnderecos();
         Endereco enderecoSelecionado;
         while (true) {
-            System.out.println("+------------------------------------+");
+            System.out.println("+--------------------------------------+");
             System.out.println("|   Endereço do evento " + eventoEncontrado.getNome());
-            System.out.println("|                                    |");
-            System.out.println("|   1. Listar endereços associados   |");
-            System.out.println("|   2. Associar existente            |");
-            System.out.println("|   3. Cadastrar novo                |");
-            System.out.println("|   4. Desassociar endereço          |");
-            System.out.println("|   0. Voltar                        |");
-            System.out.println("|                                    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("Opção: ");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Listar endereços associados     |");
+            System.out.println("|   2. Associar existente              |");
+            System.out.println("|   3. Cadastrar novo                  |");
+            System.out.println("|   4. Desassociar endereço            |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --"); }
-                    else { System.out.println("Nenhum serviço associado!"); }
+                    if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --");
+                        System.out.println();}
+                    else { System.out.println("Nenhum serviço associado!");
+                        System.out.println(); }
                     for (Endereco endereco : enderecos){
                         System.out.println(endereco);
                         System.out.println("-----");
@@ -323,16 +339,19 @@ public class EventoView {
                     enderecos.add(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
                     System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    System.out.println();
                     break;
                 case 3:
                     enderecoSelecionado = enderecoView.cadastrar();
                     enderecos.add(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
                     System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    System.out.println();
                     break;
                 case 4:
                     if (enderecos.size() == 0) {
                         System.out.println("Nenhum endereço associado!");
+                        System.out.println();
                         break;
                     }
                     enderecoSelecionado =  enderecoView.selecionar(enderecos);
@@ -340,11 +359,14 @@ public class EventoView {
                     enderecos.remove(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
                     System.out.println("Endereço " + enderecoSelecionado.getRua() + " desassociado!");
+                    System.out.println();
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
