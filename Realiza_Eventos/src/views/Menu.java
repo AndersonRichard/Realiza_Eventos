@@ -23,6 +23,8 @@
                         menuEmpresa.exibir();
                         break;
                     case 2:
+                        MenuCliente menuCliente = new MenuCliente();
+                        menuCliente.exibir();
                         break;
                     case 0:
                         System.out.println("Encerrando o programa.");

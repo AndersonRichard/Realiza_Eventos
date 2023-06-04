@@ -87,9 +87,7 @@ public class EventoView {
             EventoService eventoService = new EventoService();
             switch (opcao) {
                 case 1:
-                    System.out.println("+------------------------------------+");
-                    System.out.println("|   Insira o ID:                     +");
-                    System.out.println("+------------------------------------+");
+                    System.out.print("Digite o ID:");
                     String pesquisaEvento = scanner.nextLine();
                     Evento pesquisaId = eventoService.read(pesquisaEvento);
                     if(pesquisaId == null){
