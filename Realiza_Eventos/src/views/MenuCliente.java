@@ -2,6 +2,8 @@ package views;
 
 import models.*;
 import services.SolicitacaoService;
+
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -170,15 +172,17 @@ public class MenuCliente {
         // Selecionar os serviços
         ArrayList<Servico> servicosSelecionados = new ArrayList<>();
         while (true) {
-            System.out.println("Selecione o(s) serviço(s) desejado(s):");
+            System.out.println("+--------------------------------------+");
+            System.out.println("|Selecione o(s) serviço(s) desejado(s):|");
             ArrayList<Servico> servicosDoEvento = eventoSelecionado.getServicos();
             for (int i = 0; i < servicosDoEvento.size(); i++){
                 Servico servico = servicosDoEvento.get(i);
                 System.out.printf("%d. [%s] %s\n", i + 1, servicosSelecionados.contains(servico) ? "X" : " ", servico.getNome());
             }
-            System.out.println("C. Confirmar");
-            System.out.println("0. Voltar");
-            System.out.println("Opção: ");
+            System.out.println("|C. Confirmar                          +");
+            System.out.println("|0. Voltar                             +");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
             String opcao = scanner.nextLine().toUpperCase();
             switch (opcao){
                 case "C":
@@ -186,8 +190,10 @@ public class MenuCliente {
                         return servicosSelecionados;
                     }
                     System.out.println("Nenhum serviço foi selecionado!");
+                    System.out.println();
                     break;
                 case "0":
+                    System.out.println();
                     return null;
                 default:
                     try {
@@ -216,7 +222,8 @@ public class MenuCliente {
         // Selecionar as opções
         ArrayList<Opcao> opcoesSelecionadas = new ArrayList<>();
         while (true) {
-            System.out.println("Selecione a(s) opcão(ões) desejada(s):");
+            System.out.println("+------------------------------------+");
+            System.out.println("|Selecione a(s) opcão(ões) desejada(s):");
             ArrayList<Opcao> opcoesDoServico = servicoSelecionado.getOpcoes();
             for (int i = 0; i < opcoesDoServico.size(); i++){
                 Opcao opcao = opcoesDoServico.get(i);
