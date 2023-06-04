@@ -8,14 +8,13 @@ public class OpcaoService {
     public static ArrayList<Opcao> dados;
 
     public OpcaoService() {
-        if (dados == null){
-            dados = new ArrayList<>();
-        }
+        if (dados == null){ dados = load(); }
     }
 
     // Cria o registro na base de dados
     public void create(Opcao registro){
         dados.add(registro);
+        save();
     }
 
     // Retorna todos os registros
@@ -38,6 +37,7 @@ public class OpcaoService {
         if (new ArrayList<>(dados).contains(registro)){
             dados.remove(registro);
             dados.add(registro);
+            save();
         }
     }
 
@@ -46,8 +46,20 @@ public class OpcaoService {
         for (Opcao registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
                 dados.remove(registro);
+                save();
             }
         }
     }
 
+    // Salva os dados em um arquivo.dat
+    public void save(){
+        ArmazenamentoService armazenamentoService = new ArmazenamentoService();
+        armazenamentoService.save(dados, "opcoes");
+    }
+
+    // Carrega os dados de um arquivo.dat
+    private ArrayList<Opcao> load(){
+        ArmazenamentoService armazenamentoService = new ArmazenamentoService();
+        return (ArrayList<Opcao>) armazenamentoService.load("opcoes");
+    }
 }

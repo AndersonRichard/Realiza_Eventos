@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ModeloBase {
+public class ModeloBase implements Serializable {
 
     protected String id;
 

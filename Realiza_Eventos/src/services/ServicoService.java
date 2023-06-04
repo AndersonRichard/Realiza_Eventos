@@ -7,14 +7,13 @@ public class ServicoService {
     public static ArrayList<Servico> dados;
 
     public ServicoService() {
-        if (dados == null){
-            dados = new ArrayList<>();
-        }
+        if (dados == null){ dados = load(); }
     }
 
     // Cria o registro na base de dados
     public void create(Servico registro){
         dados.add(registro);
+        save();
     }
 
     // Retorna todos os registros
@@ -37,6 +36,7 @@ public class ServicoService {
         if (new ArrayList<>(dados).contains(registro)){
             dados.remove(registro);
             dados.add(registro);
+            save();
         }
     }
 
@@ -45,7 +45,20 @@ public class ServicoService {
         for (Servico registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
                 dados.remove(registro);
+                save();
             }
         }
+    }
+
+    // Salva os dados em um arquivo.dat
+    public void save(){
+        ArmazenamentoService armazenamentoService = new ArmazenamentoService();
+        armazenamentoService.save(dados, "servicos");
+    }
+
+    // Carrega os dados de um arquivo.dat
+    private ArrayList<Servico> load(){
+        ArmazenamentoService armazenamentoService = new ArmazenamentoService();
+        return (ArrayList<Servico>) armazenamentoService.load("servicos");
     }
 }
