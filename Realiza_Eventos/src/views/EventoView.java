@@ -2,11 +2,8 @@ package views;
 
 import models.Endereco;
 import models.Evento;
-
 import models.Servico;
 import services.EventoService;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
