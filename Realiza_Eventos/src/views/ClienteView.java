@@ -2,7 +2,6 @@ package views;
 
 import models.Cliente;
 import services.ClienteService;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class ClienteView {
             System.out.println("1. Consultar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -40,7 +39,7 @@ public class ClienteView {
             System.out.println("2. Listar todos");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:

@@ -14,7 +14,7 @@ public class SolicitacaoView {
             System.out.println("2. Deletar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -39,12 +39,11 @@ public class SolicitacaoView {
                 System.out.println("2. Listar todos");
                 System.out.println("0. Voltar");
                 System.out.print("Opção: ");
-                int opcao = scanner.nextInt();
+                int opcao = Integer.parseInt(scanner.nextLine());
                 SolicitacaoService solicitacaoService = new SolicitacaoService();
                 switch (opcao) {
                     case 1:
                         System.out.println("Insira o ID: ");
-                        scanner.nextLine();
                         String pesquisaSolicitacao = scanner.nextLine();
                         Solicitacao pesquisaId = solicitacaoService.read(pesquisaSolicitacao);
                         if(pesquisaId == null){

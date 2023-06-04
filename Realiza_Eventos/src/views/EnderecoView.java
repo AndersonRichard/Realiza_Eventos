@@ -2,7 +2,6 @@ package views;
 
 import models.Endereco;
 import services.EnderecoService;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +18,7 @@ public class EnderecoView {
             System.out.println("4. Editar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -79,7 +78,7 @@ public class EnderecoView {
             System.out.println("2. Listar todos");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -139,7 +138,7 @@ public class EnderecoView {
             System.out.println("9. Salvar");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:

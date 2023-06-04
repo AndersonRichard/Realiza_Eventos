@@ -17,7 +17,7 @@ public class MenuEmpresa {
             System.out.println("6. Cliente");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
