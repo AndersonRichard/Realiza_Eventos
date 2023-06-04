@@ -1,10 +1,7 @@
 package views;
 
 import models.Endereco;
-import models.Servico;
 import services.EnderecoService;
-import services.ServicoService;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

@@ -9,11 +9,14 @@ public class SolicitacaoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Consultar");
-            System.out.println("2. Deletar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+------------------------------------+");
+            System.out.println("|     Escolha uma opção:             |");
+            System.out.println("|                                    |");
+            System.out.println("|   1. Consultar                     |");
+            System.out.println("|   2. Deletar                       |");
+            System.out.println("|   0. Voltar                        |");
+            System.out.println("|                                    |");
+            System.out.println("+------------------------------------+");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -34,16 +37,22 @@ public class SolicitacaoView {
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
-                System.out.println("Escolha uma opção:");
-                System.out.println("1. Pesquisar por ID");
-                System.out.println("2. Listar todos");
-                System.out.println("0. Voltar");
+                System.out.println("+------------------------------------+");
+                System.out.println("|     Escolha uma opção:             |");
+                System.out.println("|                                    |");
+                System.out.println("|   1. Pesquisar por ID              |");
+                System.out.println("|   2. Listar todos                  |");
+                System.out.println("|   0. Voltar                        |");
+                System.out.println("|                                    |");
+                System.out.println("+------------------------------------+");
                 System.out.print("Opção: ");
                 int opcao = Integer.parseInt(scanner.nextLine());
                 SolicitacaoService solicitacaoService = new SolicitacaoService();
                 switch (opcao) {
                     case 1:
-                        System.out.println("Insira o ID: ");
+                        System.out.println("+------------------------------------+");
+                        System.out.println("|   Insira o ID:                     +");
+                        System.out.println("+------------------------------------+");
                         String pesquisaSolicitacao = scanner.nextLine();
                         Solicitacao pesquisaId = solicitacaoService.read(pesquisaSolicitacao);
                         if(pesquisaId == null){
@@ -67,7 +76,9 @@ public class SolicitacaoView {
     }
     public void deletar() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Insira o ID: ");
+        System.out.println("+------------------------------------+");
+        System.out.println("|   Insira o ID:                     +");
+        System.out.println("+------------------------------------+");;
         String deletaSolicitacao = scanner.nextLine();
         SolicitacaoService solicitacaoService = new SolicitacaoService();
         solicitacaoService.delete(deletaSolicitacao);

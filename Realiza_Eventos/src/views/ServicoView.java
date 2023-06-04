@@ -2,10 +2,7 @@ package views;
 
 import models.Opcao;
 import models.Servico;
-import services.OpcaoService;
 import services.ServicoService;
-
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,13 +11,17 @@ public class ServicoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Consultar");
-            System.out.println("3. Deletar");
-            System.out.println("4. Editar");
-            System.out.println("5. Gerenciar Opções");
-            System.out.println("0. Voltar");
+            System.out.println("+------------------------------------+");
+            System.out.println("|     Escolha uma opção:             |");
+            System.out.println("|                                    |");
+            System.out.println("|   1. Cadastrar                     |");
+            System.out.println("|   2. Consultar                     |");
+            System.out.println("|   3. Deletar                       |");
+            System.out.println("|   4. Editar                        |");
+            System.out.println("|   5. Gerenciar Opções              |");
+            System.out.println("|   0. Voltar                        |");
+            System.out.println("|                                    |");
+            System.out.println("+------------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
@@ -49,10 +50,15 @@ public class ServicoView {
     }
     public Servico cadastrar(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Preencha as informações:");
-        System.out.print("Nome: ");
+        System.out.println("+------------------------------------+");
+        System.out.println("|     Preencha as informações:       |");
+        System.out.println("|                                    |");
+        System.out.println("|   Nome:                            |");
+        System.out.println("+------------------------------------+");
         String nome = scanner.nextLine();
-        System.out.print("Descrição: ");
+        System.out.println("+------------------------------------+");
+        System.out.println("|   Descrição:                       |");
+        System.out.println("+------------------------------------+");
         String descricao = scanner.nextLine();
         Servico servico = new Servico(nome, descricao);
         ServicoService servicoService = new ServicoService();
@@ -100,16 +106,22 @@ public class ServicoView {
         ServicoService servicoService = new ServicoService();
 
         while (true) {
-            System.out.println("Selecione um SERVIÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
+            System.out.println("+------------------------------------+");
+            System.out.println("|     Escolha uma SERVIÇO            |");
+            System.out.println("|                                    |");
+            System.out.println("|   1. Pesquisar por ID              |");
+            System.out.println("|   2. Listar todos                  |");
+            System.out.println("|   0. Voltar                        |");
+            System.out.println("|                                    |");
+            System.out.println("+------------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.println("+------------------------------------+");
+                    System.out.println("|   Digite o ID:                     +");
+                    System.out.println("+------------------------------------+");
                     Servico servicoEncontrado = servicoService.read(scanner.nextLine());
                     if (servicoEncontrado == null) {
                         System.out.println("Opção não localizada!");
@@ -147,16 +159,22 @@ public class ServicoView {
         ServicoService servicoService = new ServicoService();
 
         while (true) {
-            System.out.println("Selecione um SERVIÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
+            System.out.println("+------------------------------------+");
+            System.out.println("|     Escolha uma SERVIÇO            |");
+            System.out.println("|                                    |");
+            System.out.println("|   1. Pesquisar por ID              |");
+            System.out.println("|   2. Listar todos                  |");
+            System.out.println("|   0. Voltar                        |");
+            System.out.println("|                                    |");
+            System.out.println("+------------------------------------+");
             System.out.print("Opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.println("+------------------------------------+");
+                    System.out.println("|   Digite o ID:                     +");
+                    System.out.println("+------------------------------------+");
                     Servico servicoEncontrado = servicoService.read(scanner.nextLine());
                     if (servicoEncontrado == null) {
                         System.out.println("Opção não localizada!");
@@ -189,7 +207,9 @@ public class ServicoView {
     }
     public void deletar() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Insira o ID: ");
+        System.out.println("+------------------------------------+");
+        System.out.println("|   Digite o ID:                     +");
+        System.out.println("+------------------------------------+");
         String deletaServico = scanner.nextLine();
         ServicoService servicoService = new ServicoService();
         servicoService.delete(deletaServico);
@@ -198,7 +218,9 @@ public class ServicoView {
     public void editar(){
         Scanner scanner = new Scanner(System.in);
         ServicoService servicoService = new ServicoService();
-        System.out.println("Digite o Id: ");
+        System.out.println("+------------------------------------+");
+        System.out.println("|   Digite o ID:                     +");
+        System.out.println("+------------------------------------+");
         Servico servicoEncontrado = servicoService.read(scanner.nextLine());
         if (servicoEncontrado == null) {
             System.out.println("Opção não localizada!");

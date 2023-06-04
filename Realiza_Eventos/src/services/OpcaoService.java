@@ -1,8 +1,6 @@
 package services;
 
 import models.Opcao;
-import models.Opcao;
-
 import java.util.ArrayList;
 
 public class OpcaoService {
