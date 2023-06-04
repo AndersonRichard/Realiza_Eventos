@@ -108,7 +108,7 @@ public class Endereco extends ModeloBase {
                 this.estado,
                 this.pais);
     }
-    public String exportReport() {
+    public String formatado() {
         return String.format("%s, Nº%s - %s. %s/%s",
                 this.rua, this.numero, this.bairro,  this.cidade, this.estado);
     }
