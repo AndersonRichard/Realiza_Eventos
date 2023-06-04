@@ -1,8 +1,6 @@
 package services;
 
 import models.Endereco;
-import models.Endereco;
-
 import java.util.ArrayList;
 
 public class EnderecoService {

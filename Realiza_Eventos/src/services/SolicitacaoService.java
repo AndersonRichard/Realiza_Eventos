@@ -1,7 +1,6 @@
 package services;
 
 import models.Solicitacao;
-
 import java.util.ArrayList;
 
 public class SolicitacaoService {
