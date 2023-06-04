@@ -108,6 +108,10 @@ public class Endereco extends ModeloBase {
                 this.estado,
                 this.pais);
     }
+    public String stringFormatada() {
+        return String.format("%s, Nº%s - %s. %s/%s",
+                this.rua, this.numero, this.bairro,  this.cidade, this.estado);
+    }
     public Endereco clone(){
         Endereco clone = new Endereco(this.rua, this.numero, this.bairro, this.complemento, this.cep, this.cidade, this.estado, this.pais);
         clone.id = this.id;
