@@ -6,14 +6,14 @@
         public void menuInicial() {
             Scanner scanner = new Scanner(System.in);
             while (true) {
-                System.out.println("+-------------------------------------+");
-                System.out.println("|   Bem-vindo ao sistema de eventos!  |");
-                System.out.println("|   Escolha uma opção:                |");
-                System.out.println("|   1. Visão empresa                  |");
-                System.out.println("|   2. Visão Cliente                  |");
-                System.out.println("|   0. Sair                           |");
-                System.out.println("+-------------------------------------+");
-                System.out.print("Opção: ");
+                System.out.println("+--------------------------------------+");
+                System.out.println("|   Bem-vindo ao sistema de eventos!   |");
+                System.out.println("|   Escolha uma opção:                 |");
+                System.out.println("|   1. Visão empresa                   |");
+                System.out.println("|   2. Visão Cliente                   |");
+                System.out.println("|   0. Sair                            |");
+                System.out.println("+--------------------------------------+");
+                System.out.print("Digite uma opção: ");
                 int opcao = Integer.parseInt(scanner.nextLine());
                 System.out.println();
 
@@ -22,7 +22,7 @@
                         MenuEmpresa menuEmpresa = new MenuEmpresa();
                         menuEmpresa.exibir();
                         break;
-                    case 2://cliente
+                    case 2:
                         break;
                     case 0:
                         System.out.println("Encerrando o programa.");
