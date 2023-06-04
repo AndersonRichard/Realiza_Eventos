@@ -1,10 +1,11 @@
 package views;
 
+import models.Endereco;
 import models.Evento;
-import models.Opcao;
+
 import models.Servico;
 import services.EventoService;
-import services.ServicoService;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +43,7 @@ public class EventoView {
                     gerenciarServicos();
                     break;
                 case 6:
-
+                    gerenciarEnderecos();
                     break;
                 case 0:
                     return;
@@ -144,7 +145,6 @@ public class EventoView {
             }
         }
     }
-
     public Evento selecionar(){
         Scanner scanner = new Scanner(System.in);
         EventoService eventoService = new EventoService();
@@ -203,7 +203,7 @@ public class EventoView {
             System.out.println("Serviços do evento " + eventoEncontrado.getNome());
             System.out.println("1. Listar serviços associados");
             System.out.println("2. Associar existente");
-            System.out.println("3. Cadastrar nova");
+            System.out.println("3. Cadastrar novo");
             System.out.println("4. Desassociar serviço");
             System.out.println("0. Voltar");
             System.out.print("Opção: ");
@@ -241,6 +241,64 @@ public class EventoView {
                     servicos.remove(servicoSelecionado);
                     eventoEncontrado.setServicos(servicos);
                     System.out.println("Serviço " + servicoSelecionado.getNome() + " desassociado!");
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+    public void gerenciarEnderecos(){
+        Scanner scanner = new Scanner(System.in);
+        EnderecoView enderecoView = new EnderecoView();
+        Evento eventoEncontrado = selecionar();
+        if (eventoEncontrado == null) { return; }
+
+        ArrayList<Endereco> enderecos = eventoEncontrado.getEnderecos();
+        Endereco enderecoSelecionado;
+        while (true) {
+            System.out.println("Endereço do evento " + eventoEncontrado.getNome());
+            System.out.println("1. Listar endereços associados");
+            System.out.println("2. Associar existente");
+            System.out.println("3. Cadastrar novo");
+            System.out.println("4. Desassociar endereço");
+            System.out.println("0. Voltar");
+            System.out.print("Opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --"); }
+                    else { System.out.println("Nenhum serviço associado!"); }
+                    for (Endereco endereco : enderecos){
+                        System.out.println(endereco);
+                        System.out.println("-----");
+                    }
+                    break;
+                case 2:
+                    enderecoSelecionado =  enderecoView.selecionar();
+                    if (enderecoSelecionado == null) { break; }
+                    enderecos.add(enderecoSelecionado);
+                    eventoEncontrado.setEnderecos(enderecos);
+                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    break;
+                case 3:
+                    enderecoSelecionado = enderecoView.cadastrar();
+                    enderecos.add(enderecoSelecionado);
+                    eventoEncontrado.setEnderecos(enderecos);
+                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    break;
+                case 4:
+                    if (enderecos.size() == 0) {
+                        System.out.println("Nenhum endereço associado!");
+                        break;
+                    }
+                    enderecoSelecionado =  enderecoView.selecionar(enderecos);
+                    if (enderecoSelecionado == null) { break; }
+                    enderecos.remove(enderecoSelecionado);
+                    eventoEncontrado.setEnderecos(enderecos);
+                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " desassociado!");
                     break;
                 case 0:
                     return;
