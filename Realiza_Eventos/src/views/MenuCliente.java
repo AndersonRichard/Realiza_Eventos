@@ -1,12 +1,15 @@
 package views;
 
 import models.*;
+import services.ClienteService;
 import services.SolicitacaoService;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import static services.ClienteService.dados;
 
 public class MenuCliente {
     public void exibir() {
@@ -95,8 +98,13 @@ public class MenuCliente {
                     String telefone = scanner.nextLine();
                     System.out.print("Email: ");
                     String email = scanner.nextLine();
-                    cliente = new Cliente(nome, telefone, email);
-
+                    ClienteService clienteService = new ClienteService();
+                    if (cliente == null) {
+                        cliente = new Cliente(nome, telefone, email);
+                        clienteService.create(cliente);
+                    } else {
+                        clienteService.update(cliente);
+                    }
                     break;
                 case 5:
                     System.out.print("Observações: ");
@@ -154,6 +162,7 @@ public class MenuCliente {
                     System.out.println("3. Voltar");
                     System.out.print("Opção: ");
                     int opcao = Integer.parseInt(scanner.nextLine());
+
                     if (opcao == 2){ break; }
                     else if (opcao == 3){ return null; }
                     else if (opcao != 1){ System.out.println("Opção inválida. Tente novamente."); }
