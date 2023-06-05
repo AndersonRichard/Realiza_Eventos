@@ -59,6 +59,7 @@ public class EventoView {
         System.out.println();
         Scanner scanner = new Scanner(System.in);
         System.out.println("+--------------------------------------------------+");
+        System.out.println("|     Cadastro - Evento                            |");
         System.out.println("|     Preencha as informações:                     |");
         System.out.println("+--------------------------------------------------+");
         System.out.print("Nome: ");
@@ -75,7 +76,7 @@ public class EventoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Menu Consulta                                |");
+            System.out.println("|     Menu Consulta - Evento                       |");
             System.out.println("|                                                  |");
             System.out.println("|   1. Pesquisar por ID                            |");
             System.out.println("|   2. Listar todos                                |");
@@ -101,6 +102,7 @@ public class EventoView {
                     System.out.println("Lista de todas as solicitações:");
                     for (Evento evento : eventoService.read()) {
                         System.out.println(evento);
+                        System.out.println("-----------------");
                     }
                     break;
                 case 0:
@@ -134,7 +136,7 @@ public class EventoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Menu Edição                                  |");
+            System.out.println("|     Menu Edição - Evento                         |");
             System.out.println("+--------------------------------------------------+");
             System.out.println("1. Nome: " + eventoEncontrado.getNome());
             System.out.println("2. Descrição: " + eventoEncontrado.getDescricao());
@@ -173,7 +175,7 @@ public class EventoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Selecione um EVENTO                          |");
+            System.out.println("|   Selecione um EVENTO                            |");
             System.out.println("|                                                  |");
             System.out.println("|   1. Por Id                                      |");
             System.out.println("|   2. Da lista                                    |");
