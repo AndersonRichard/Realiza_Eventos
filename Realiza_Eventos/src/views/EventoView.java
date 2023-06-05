@@ -293,11 +293,11 @@ public class EventoView {
             System.out.println();
             System.out.println("      Serviços do evento " + eventoEncontrado.getNome());
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|  1. Listar serviços associados                   +");
-            System.out.println("|  2. Associar existente                           +");
-            System.out.println("|  3. Cadastrar novo                               +");
-            System.out.println("|  4. Desassociar serviço                          +");
-            System.out.println("|  0. Voltar                                       +");
+            System.out.println("|  1. Listar serviços associados                   |");
+            System.out.println("|  2. Associar existente                           |");
+            System.out.println("|  3. Cadastrar novo                               |");
+            System.out.println("|  4. Desassociar serviço                          |");
+            System.out.println("|  0. Voltar                                       |");
             System.out.println("+--------------------------------------------------+");
             System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
@@ -361,19 +361,21 @@ public class EventoView {
             System.out.println();
             System.out.println("   Endereço do evento " + eventoEncontrado.getNome());
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|  1. Listar serviços associados                   +");
-            System.out.println("|  2. Associar existente                           +");
-            System.out.println("|  3. Cadastrar novo                               +");
-            System.out.println("|  4. Desassociar serviço                          +");
-            System.out.println("|  0. Voltar                                       +");
+            System.out.println("|  1. Listar serviços associados                   |");
+            System.out.println("|  2. Associar existente                           |");
+            System.out.println("|  3. Cadastrar novo                               |");
+            System.out.println("|  4. Desassociar serviço                          |");
+            System.out.println("|  0. Voltar                                       |");
             System.out.println("+--------------------------------------------------+");
             System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --"); }
-                    else { System.out.println("Nenhum serviço associado!"); }
+                    if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --");
+                        System.out.println();}
+                    else { System.out.println("Nenhum serviço associado!");
+                        System.out.println();}
                     for (Endereco endereco : enderecos){
                         System.out.println(endereco);
                     }
