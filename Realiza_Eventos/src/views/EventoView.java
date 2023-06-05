@@ -222,6 +222,61 @@ public class EventoView {
             }
         }
     }
+    public Evento selecionar(ArrayList<Evento> eventosDisponiveis){
+        Scanner scanner = new Scanner(System.in);
+        EventoService eventoService = new EventoService();
+
+        while (true) {
+            System.out.println("+--------------------------------------+");
+            System.out.println("|     Selecione um EVENTO              |");
+            System.out.println("|                                      |");
+            System.out.println("|   1. Por Id                          |");
+            System.out.println("|   2. Da lista                        |");
+            System.out.println("|   0. Voltar                          |");
+            System.out.println("|                                      |");
+            System.out.println("+--------------------------------------+");
+            System.out.print("Digite uma opção: ");
+            int opcao = Integer.parseInt(scanner.nextLine());
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o Id: ");
+                    Evento eventoEncontrado = eventoService.read(scanner.nextLine());
+                    if (eventoEncontrado == null) {
+                        System.out.println("Opção não localizada!");
+                        System.out.println();
+                        break;
+                    }
+                    return eventoEncontrado;
+                case 2:
+                    System.out.println();
+                    while(true){
+                        if (eventosDisponiveis.size() > 0){ System.out.println(" -- EVENTOS --");
+                            System.out.println(); }
+                        for (int i = 0; i < eventosDisponiveis.size(); i++){
+                            System.out.printf("%d. %s\n", i + 1, eventosDisponiveis.get(i).getNome());
+                        }
+                        System.out.println("0. Voltar");
+                        System.out.println();
+                        System.out.print("Selecione uma opção: ");
+                        opcao = Integer.parseInt(scanner.nextLine());
+                        System.out.println();
+                        if (opcao == 0) { break; }
+                        Evento eventoSelecionado = eventosDisponiveis.get(opcao - 1);
+                        if (eventoSelecionado != null){
+                            return eventoSelecionado;
+                        }
+                        System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
+                    }
+                    break;
+                case 0:
+                    return null;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
     public void gerenciarServicos(){
         Scanner scanner = new Scanner(System.in);
         ServicoView servicoView = new ServicoView();

@@ -2,6 +2,7 @@ package views;
 
 import models.*;
 import services.ClienteService;
+import services.EventoService;
 import services.SolicitacaoService;
 
 import java.sql.SQLOutput;
@@ -32,7 +33,12 @@ public class MenuCliente {
             switch (opcao) {
                 case 1:
                     System.out.println();
-                    solicitarOrcamento();
+                    ArrayList<Evento> eventos = obterEventosDisponiveis();
+                    if (eventos.size() < 1) {
+                        System.out.println("Desculpe, não temos nenhum Evento disponível!");
+                        break;
+                    }
+                    solicitarOrcamento(eventos);
                     break;
                 case 0:
                     return;
@@ -43,7 +49,30 @@ public class MenuCliente {
         }
     }
 
-    public void solicitarOrcamento(){
+    public ArrayList<Evento> obterEventosDisponiveis(){
+        ArrayList<Evento> eventosDisponiveis = new ArrayList<>();
+
+        EventoService eventoService = new EventoService();
+        ArrayList<Evento> eventos = eventoService.read();
+
+        for (Evento evento : eventos){
+            ArrayList<Servico> servicosDisponiveis = new ArrayList<>();
+            for (Servico servico : evento.getServicos()){
+                if (servico.getOpcoes().size() > 0){
+                    servicosDisponiveis.add(servico);
+                }
+            }
+            if (servicosDisponiveis.size() > 0 && evento.getEnderecos().size() > 0){
+                Evento eventoDisponivel = evento.clone();
+                eventoDisponivel.setServicos(servicosDisponiveis);
+                eventosDisponiveis.add(eventoDisponivel);
+            }
+        }
+
+        return eventosDisponiveis;
+    }
+
+    public void solicitarOrcamento(ArrayList<Evento> eventos){
         SolicitacaoService solicitacaoService = new SolicitacaoService();
         Scanner scanner = new Scanner(System.in);
         EventoView eventosView = new EventoView();
@@ -74,7 +103,7 @@ public class MenuCliente {
             System.out.println();
             switch (opcao){
                 case 1:
-                    eventoSelecionado = selecionarEvento(scanner, eventosView);
+                    eventoSelecionado = selecionarEvento(scanner, eventosView, eventos);
                     break;
                 case 2:
                     if (eventoSelecionado == null){
@@ -140,10 +169,10 @@ public class MenuCliente {
         }
     }
 
-    private Evento selecionarEvento(Scanner scanner, EventoView eventosView) {
+    private Evento selecionarEvento(Scanner scanner, EventoView eventosView, ArrayList<Evento> eventos) {
         while (true){
             // Selecionar um evento
-            Evento eventoSelecionado = eventosView.selecionar().clone();
+            Evento eventoSelecionado = eventosView.selecionar(eventos).clone();
             if (eventoSelecionado == null){
                 return null;
             }

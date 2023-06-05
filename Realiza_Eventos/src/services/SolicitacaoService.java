@@ -91,9 +91,9 @@ public class SolicitacaoService {
                 solicitacao.getEvento().getDescricao());
 
         for (Servico servico : solicitacao.getEvento().getServicos()){
-            relatorio += String.format("\t%s\n\t%s\n", servico.getNome(), servico.getDescricao());
+            relatorio += String.format("\t%s\n\t* %s\n", servico.getNome(), servico.getDescricao());
             for (Opcao opcao : servico.getOpcoes()){
-                relatorio += String.format("\t%s\n\t%s\n", opcao.getNome(), opcao.getDescricao());
+                relatorio += String.format("\t\t%s\n\t\t* %s\n", opcao.getNome(), opcao.getDescricao());
             }
         }
 
