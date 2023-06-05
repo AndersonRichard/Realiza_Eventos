@@ -58,7 +58,7 @@ public class SolicitacaoView {
 
             while (true) {
                 System.out.println("+--------------------------------------------------+");
-                System.out.println("|     Menu Solicitação                             |");
+                System.out.println("|     Menu Consulta - Solicitação                  |");
                 System.out.println("|                                                  |");
                 System.out.println("|   1. Pesquisar por ID                            |");
                 System.out.println("|   2. Listar todos                                |");
@@ -83,10 +83,11 @@ public class SolicitacaoView {
                     case 2:
                         System.out.println();
                         System.out.println("Lista de todas as solicitações:");
-                        System.out.println();
                         for (Solicitacao solicitacao : solicitacaoService.read()) {
                             System.out.println(solicitacao);
+                            System.out.println("-----------------");
                         }
+
                         System.out.println();
                         break;
                     case 0:
