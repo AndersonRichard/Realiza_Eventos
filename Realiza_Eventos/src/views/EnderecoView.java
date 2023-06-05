@@ -129,8 +129,9 @@ public class EnderecoView {
         Scanner scanner = new Scanner(System.in);
         EnderecoService enderecoService = new EnderecoService();
         System.out.print("Digite o Id: ");
-        enderecoService.delete(scanner.nextLine());
-        System.out.println("Endereço deletado com sucesso");
+        if(enderecoService.delete(scanner.nextLine())){
+            System.out.println("Endereço deletado com sucesso");
+        }
         System.out.println();
     }
 
@@ -141,7 +142,7 @@ public class EnderecoView {
         System.out.print("Digite o Id: ");
         Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
         if (enderecoEncontrado == null) {
-            System.out.println("Opção não localizada!");
+            System.out.println("Endereço não localizado!");
             System.out.println();
             return;
         }
@@ -150,7 +151,7 @@ public class EnderecoView {
             System.out.println("+--------------------------------------------------+");
             System.out.println("|     Menu Edição - Endereço                       |");
             System.out.println("+--------------------------------------------------+");
-            System.out.println("1. Rua: " + enderecoEncontrado.getRua());
+            System.out.println("1. Rua: " + enderecoEncontrado.stringFormatada());
             System.out.println("2. Número: " + enderecoEncontrado.getNumero());
             System.out.println("3. Bairro: " + enderecoEncontrado.getBairro());
             System.out.println("4. Complemento: " + enderecoEncontrado.getComplemento());
@@ -239,7 +240,7 @@ public class EnderecoView {
                     System.out.print("Digite o Id: ");
                     Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
                     if (enderecoEncontrado == null) {
-                        System.out.println("Opção não localizada!");
+                        System.out.println("Endereço não localizado!");
                         System.out.println();
                         break;
                     }
@@ -250,7 +251,7 @@ public class EnderecoView {
                         if (enderecos.size() > 0){ System.out.println(" -- ENDEREÇOS --");
                             System.out.println();}
                         for (int i = 0; i < enderecos.size(); i++){
-                            System.out.printf("%d. %s\n", i + 1, enderecos.get(i).getRua());
+                            System.out.printf("%d. %s\n", i + 1, enderecos.get(i).stringFormatada());
                         }
                         System.out.println("0. Voltar");
                         System.out.println();
@@ -304,7 +305,7 @@ public class EnderecoView {
                         if (enderecosDisponiveis.size() > 0){ System.out.println(" -- ENDEREÇOS --");
                             System.out.println(); }
                         for (int i = 0; i < enderecosDisponiveis.size(); i++){
-                            System.out.printf("%d. %s\n", i + 1, enderecosDisponiveis.get(i).getRua());
+                            System.out.printf("%d. %s\n", i + 1, enderecosDisponiveis.get(i).stringFormatada());
                         }
                         System.out.println("0. Voltar");
                         System.out.println();

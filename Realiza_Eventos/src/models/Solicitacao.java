@@ -1,7 +1,6 @@
 package models;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Solicitacao extends ModeloBase {
@@ -99,9 +98,7 @@ public class Solicitacao extends ModeloBase {
                 this.id,
                 this.getDataHoraDaSolicitacaoStr(),
                 this.evento.getNome(),
-                this.enderecoSelecionado.getRua() + ", " + this.enderecoSelecionado.getNumero() + ", " +
-                        this.enderecoSelecionado.getBairro() + ", " + this.enderecoSelecionado.getCidade() + ", " +
-                        this.enderecoSelecionado.getEstado(),
+                this.enderecoSelecionado.stringFormatada(),
                 this.inicioEventoDataHora,
                 this.terminoEventoDataHora,
                 this.cliente.getNome(),

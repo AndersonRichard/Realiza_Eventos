@@ -42,13 +42,15 @@ public class EnderecoService {
     }
 
     // Deleta o registro conforme o id informado
-    public void delete(String id){
+    public boolean delete(String id){
         for (Endereco registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
                 dados.remove(registro);
                 save();
+                return true;
             }
         }
+        return false;
     }
 
     // Salva os dados em um arquivo.dat
