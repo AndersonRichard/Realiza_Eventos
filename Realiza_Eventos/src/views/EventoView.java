@@ -19,8 +19,8 @@ public class EventoView {
             System.out.println("|   2. Consultar                                   |");
             System.out.println("|   3. Deletar                                     |");
             System.out.println("|   4. Editar                                      |");
-            System.out.println("|   5. Gerenciar Serviços                          |");
-            System.out.println("|   6. Gerenciar Endereços                         |");
+            System.out.println("|   5. Gerenciar Serviços associados               |");
+            System.out.println("|   6. Gerenciar Endereços associados              |");
             System.out.println("|   0. Voltar                                      |");
             System.out.println("|                                                  |");
             System.out.println("+--------------------------------------------------+");
@@ -92,14 +92,15 @@ public class EventoView {
                     String pesquisaEvento = scanner.nextLine();
                     Evento pesquisaId = eventoService.read(pesquisaEvento);
                     if(pesquisaId == null){
-                        System.out.println("Solicitação não encontrada");
+                        System.out.println("Evento não localizado!");
                         System.out.println();
                         break;
                     }
+                    System.out.println("-- EVENTO --");
                     System.out.println(pesquisaId);
                     break;
                 case 2:
-                    System.out.println("Lista de todas as solicitações:");
+                    System.out.println("-- EVENTOS --");
                     for (Evento evento : eventoService.read()) {
                         System.out.println(evento);
                         System.out.println("-----------------");
@@ -119,8 +120,9 @@ public class EventoView {
         System.out.print("Digite o Id: ");
         String deletaEvento = scanner.nextLine();
         EventoService eventoService = new EventoService();
-        eventoService.delete(deletaEvento);
-        System.out.println("Solicitação deletada com sucesso");
+        if (eventoService.delete(deletaEvento)){
+            System.out.println("Evento deletado com sucesso");
+        }
         System.out.println();
     }
     public void editar(){
@@ -129,7 +131,7 @@ public class EventoView {
         System.out.print("Digite o Id: ");
         Evento eventoEncontrado = eventoService.read(scanner.nextLine());
         if (eventoEncontrado == null) {
-            System.out.println("Opção não localizada!");
+            System.out.println("Evento não localizado!");
             System.out.println();
             return;
         }
@@ -190,7 +192,7 @@ public class EventoView {
                     System.out.print("Digite o Id: ");
                     Evento eventoEncontrado = eventoService.read(scanner.nextLine());
                     if (eventoEncontrado == null) {
-                        System.out.println("Opção não localizada!");
+                        System.out.println("Evento não localizado!");
                         System.out.println();
                         break;
                     }
@@ -246,7 +248,7 @@ public class EventoView {
                     System.out.print("Digite o Id: ");
                     Evento eventoEncontrado = eventoService.read(scanner.nextLine());
                     if (eventoEncontrado == null) {
-                        System.out.println("Opção não localizada!");
+                        System.out.println("Evento não localizado!");
                         System.out.println();
                         break;
                     }
@@ -374,7 +376,7 @@ public class EventoView {
                 case 1:
                     if (enderecos.size() > 0) { System.out.println(" -- ENDEREÇOS --");
                         System.out.println();}
-                    else { System.out.println("Nenhum serviço associado!");
+                    else { System.out.println("Nenhum endereço associado!");
                         System.out.println();}
                     for (Endereco endereco : enderecos){
                         System.out.println(endereco);
@@ -385,14 +387,14 @@ public class EventoView {
                     if (enderecoSelecionado == null) { break; }
                     enderecos.add(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
-                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    System.out.println("Endereço " + enderecoSelecionado.stringFormatada() + " associado!");
                     System.out.println();
                     break;
                 case 3:
                     enderecoSelecionado = enderecoView.cadastrar();
                     enderecos.add(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
-                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " associado!");
+                    System.out.println("Endereço " + enderecoSelecionado.stringFormatada() + " associado!");
                     System.out.println();
                     break;
                 case 4:
@@ -405,7 +407,7 @@ public class EventoView {
                     if (enderecoSelecionado == null) { break; }
                     enderecos.remove(enderecoSelecionado);
                     eventoEncontrado.setEnderecos(enderecos);
-                    System.out.println("Endereço " + enderecoSelecionado.getRua() + " desassociado!");
+                    System.out.println("Endereço " + enderecoSelecionado.stringFormatada() + " desassociado!");
                     System.out.println();
                     break;
                 case 0:

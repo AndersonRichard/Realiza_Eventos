@@ -86,7 +86,7 @@ public class MenuCliente {
             System.out.println("| Preencha o formulário de Solicitação             |");
             System.out.println("+--------------------------------------------------+");
             System.out.println("1. Evento: " + (eventoSelecionado != null ? eventoSelecionado.getNome() : ""));
-            System.out.println("2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.getRua() : ""));
+            System.out.println("2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.stringFormatada() : ""));
             System.out.println("3. Horário: " + (dataHoraDeInicio != null ? dataHoraDeInicio + " - " : "") + (dataHoraDeTermino != null ? dataHoraDeTermino.toString() : ""));
             System.out.println("4. Contato: " + (cliente != null ? cliente.getNome() + " | " + cliente.getTelefone() : ""));
             System.out.println("5. Observações: " + observacoes);
@@ -109,15 +109,15 @@ public class MenuCliente {
                     enderecoSelecionado = selecionarEndereco(eventoSelecionado);
                     break;
                 case 3:
-                    System.out.println("Preencha os horários: ");
+                    System.out.println("Preencha os horários (dd/MM/yyyy HH:mm): ");
                     System.out.print("Inicio: ");
-                    dataHoraDeInicio = new String(scanner.nextLine());
+                    dataHoraDeInicio = scanner.nextLine();
                     System.out.print("Termino: ");
-                    dataHoraDeTermino = new String(scanner.nextLine());
+                    dataHoraDeTermino = scanner.nextLine();
                     System.out.println();
                     break;
                 case 4:
-                    System.out.println("Preencha as informações para contato");
+                    System.out.println("Preencha as informações para contato:");
                     System.out.print("Nome: ");
                     String nome = scanner.nextLine();
                     System.out.print("Telefone: ");
@@ -269,7 +269,7 @@ public class MenuCliente {
         ArrayList<Opcao> opcoesSelecionadas = new ArrayList<>();
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|  Selecione o(s) opção(s) desejado(s):            |");
+            System.out.println("|  Selecione a(s) opção(s) desejada(s):            |");
             System.out.println("|                                                  |");
             System.out.println("+--------------------------------------------------+");
             ArrayList<Opcao> opcoesDoServico = servicoSelecionado.getOpcoes();

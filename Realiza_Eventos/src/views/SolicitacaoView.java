@@ -107,6 +107,7 @@ public class SolicitacaoView {
         while (true) {
             System.out.println("+--------------------------------------------------+");
             System.out.println("|     Gerar Relatório                              |");
+            System.out.println("|                                                  |");
             System.out.println("|  1. Selecionar por Id                            |");
             System.out.println("|  2. Selecionar na lista                          |");
             System.out.println("|  0. Voltar                                       |");
@@ -129,7 +130,7 @@ public class SolicitacaoView {
                     ArrayList<Solicitacao> solicitacoes = solicitacaoService.read();
                     while(true){
                         System.out.println();
-                        if (solicitacoes.size() > 0){ System.out.println(" -- OPÇÕES --");
+                        if (solicitacoes.size() > 0){ System.out.println(" -- SOLICITAÇÕES --");
                             System.out.println(); }
                         for (int i = 0; i < solicitacoes.size(); i++){
                             System.out.printf("%d. %s\n", i + 1, "Solicitação_" + solicitacoes.get(i).getId());
@@ -161,8 +162,9 @@ public class SolicitacaoView {
         System.out.print("Digite o ID:");
         String deletaSolicitacao = scanner.nextLine();
         SolicitacaoService solicitacaoService = new SolicitacaoService();
-        solicitacaoService.delete(deletaSolicitacao);
-        System.out.println("Solicitação deletada com sucesso");
+        if (solicitacaoService.delete(deletaSolicitacao)){
+            System.out.println("Solicitação deletada com sucesso");
+        }
         System.out.println();
     }
 

@@ -18,7 +18,7 @@ public class ServicoView {
             System.out.println("|   2. Consultar                                   |");
             System.out.println("|   3. Deletar                                     |");
             System.out.println("|   4. Editar                                      |");
-            System.out.println("|   5. Gerenciar Opções                            |");
+            System.out.println("|   5. Gerenciar Opções associadas                 |");
             System.out.println("|   0. Voltar                                      |");
             System.out.println("|                                                  |");
             System.out.println("+--------------------------------------------------+");
@@ -89,14 +89,15 @@ public class ServicoView {
                     String pesquisaEvento = scanner.nextLine();
                     Servico pesquisaId = servicoService.read(pesquisaEvento);
                     if(pesquisaId == null){
-                        System.out.println("Solicitação não encontrada");
+                        System.out.println("Serviço não localizado");
                         System.out.println();
                         break;
                     }
+                    System.out.println("-- SERVIÇO --");
                     System.out.println(pesquisaId);
                     break;
                 case 2:
-                    System.out.println("Lista de todas as solicitações:");
+                    System.out.println("-- SERVIÇOS --");
                     for (Servico servico : servicoService.read()) {
                         System.out.println(servico);
                         System.out.println("-----------------");
@@ -117,7 +118,7 @@ public class ServicoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Escolha uma SERVIÇO                          |");
+            System.out.println("|     Escolha um SERVIÇO                           |");
             System.out.println("|                                                  |");
             System.out.println("|   1. Pesquisar por ID                            |");
             System.out.println("|   2. Listar todos                                |");
@@ -132,7 +133,7 @@ public class ServicoView {
                     System.out.print("Digite o ID: ");
                     Servico servicoEncontrado = servicoService.read(scanner.nextLine());
                     if (servicoEncontrado == null) {
-                        System.out.println("Opção não localizada!");
+                        System.out.println("Serviço não localizado!");
                         System.out.println();
                         break;
                     }
@@ -174,7 +175,7 @@ public class ServicoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Escolha uma SERVIÇO                          |");
+            System.out.println("|     Escolha um SERVIÇO                           |");
             System.out.println("|                                                  |");
             System.out.println("|   1. Pesquisar por ID                            |");
             System.out.println("|   2. Listar todos                                |");
@@ -189,7 +190,7 @@ public class ServicoView {
                     System.out.print("Digite o ID: ");
                     Servico servicoEncontrado = servicoService.read(scanner.nextLine());
                     if (servicoEncontrado == null) {
-                        System.out.println("Opção não localizada!");
+                        System.out.println("Serviço não localizado!");
                         System.out.println();
                         break;
                     }
@@ -228,8 +229,9 @@ public class ServicoView {
         System.out.print("Digite o ID: ");
         String deletaServico = scanner.nextLine();
         ServicoService servicoService = new ServicoService();
-        servicoService.delete(deletaServico);
-        System.out.println("Solicitação deletada com sucesso");
+        if (servicoService.delete(deletaServico)){
+            System.out.println("Serviço deletada com sucesso");
+        }
         System.out.println();
     }
     public void editar(){
@@ -238,7 +240,7 @@ public class ServicoView {
         System.out.print("Digite o ID: ");
         Servico servicoEncontrado = servicoService.read(scanner.nextLine());
         if (servicoEncontrado == null) {
-            System.out.println("Opção não localizada!");
+            System.out.println("Serviço não localizado!");
             System.out.println();
             return;
         }

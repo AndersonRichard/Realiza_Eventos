@@ -229,7 +229,9 @@ public class OpcaoView {
         Scanner scanner = new Scanner(System.in);
         OpcaoService opcaoService = new OpcaoService();
         System.out.print("Digite o Id: ");
-        opcaoService.delete(scanner.nextLine());
+        if (opcaoService.delete(scanner.nextLine())){
+            System.out.println("Opção deletada com sucesso");
+        }
     }
 
     public void editar(){

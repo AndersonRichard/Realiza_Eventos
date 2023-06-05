@@ -47,15 +47,17 @@ public class SolicitacaoService {
     }
 
     // Deleta o registro conforme o id informado
-    public void delete(String id){
+    public boolean delete(String id){
         for (Solicitacao registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
                 ClienteService clienteService = new ClienteService();
                 dados.remove(registro);
                 clienteService.delete(registro.getCliente().getId());
                 save();
+                return true;
             }
         }
+        return false;
     }
 
     // Salva os dados em um arquivo.dat
@@ -111,7 +113,7 @@ public class SolicitacaoService {
                   ========================================================================================
                 """
                 ,
-                solicitacao.getEnderecoSelecionado().getRua(),
+                solicitacao.getEnderecoSelecionado().stringFormatada(),
                 solicitacao.getInicioEventoDataHora(),
                 solicitacao.getTerminoEventoDataHora(),
                 solicitacao.getObservacoes(),

@@ -8,7 +8,8 @@
             while (true) {
                 System.out.println("+--------------------------------------------------+");
                 System.out.println("|   Bem-vindo ao sistema de eventos!               |");
-                System.out.println("|   1. Visão empresa                               |");
+                System.out.println("|                                                  |");
+                System.out.println("|   1. Visão Empresa                               |");
                 System.out.println("|   2. Visão Cliente                               |");
                 System.out.println("|   0. Sair                                        |");
                 System.out.println("+--------------------------------------------------+");
