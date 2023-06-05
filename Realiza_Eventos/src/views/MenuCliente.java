@@ -4,30 +4,26 @@ import models.*;
 import services.ClienteService;
 import services.EventoService;
 import services.SolicitacaoService;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import static services.ClienteService.dados;
 
 public class MenuCliente {
     public void exibir() {
-        System.out.println("+--------------------------------------+");
-        System.out.println("|       ***REALIZA EVENTOS***          |");
-        System.out.println("+--------------------------------------+");
+        System.out.println("+--------------------------------------------------+");
+        System.out.println("|            ***REALIZA EVENTOS***                 |");
+        System.out.println("+--------------------------------------------------+");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("+--------------------------------------+");
-            System.out.println("|                                      |");
-            System.out.println("|  1. Solicitar orçamento              |");
-            System.out.println("|  0. Voltar                           |");
-            System.out.println("|                                      |");
-            System.out.println("+--------------------------------------+");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|                                                  |");
+            System.out.println("|  1. Solicitar orçamento                          |");
+            System.out.println("|  0. Voltar                                       |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
             System.out.print("Digite uma opção: ");
-
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -36,11 +32,13 @@ public class MenuCliente {
                     ArrayList<Evento> eventos = obterEventosDisponiveis();
                     if (eventos.size() < 1) {
                         System.out.println("Desculpe, não temos nenhum Evento disponível!");
+                        System.out.println();
                         break;
                     }
                     solicitarOrcamento(eventos);
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -51,7 +49,6 @@ public class MenuCliente {
 
     public ArrayList<Evento> obterEventosDisponiveis(){
         ArrayList<Evento> eventosDisponiveis = new ArrayList<>();
-
         EventoService eventoService = new EventoService();
         ArrayList<Evento> eventos = eventoService.read();
 
@@ -85,29 +82,28 @@ public class MenuCliente {
         String observacoes = "";
 
         while(true){
-            System.out.println("+--------------------------------------+");
-            System.out.println("|  Preencha o formulário               |");
-            System.out.println("|      de Solicitação                  |");
-            System.out.println("|                                      |");
-            System.out.println("|  1. Evento: " + (eventoSelecionado != null ? eventoSelecionado.getNome() : "") + "                         |");
-            System.out.println("|  2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.getRua() : "") + "                       |");
-            System.out.println("|  3. Horário: " + (dataHoraDeInicio != null ? dataHoraDeInicio + " - " : "") + (dataHoraDeTermino != null ? dataHoraDeTermino.toString() : "") + "                        |");
-            System.out.println("|  4. Contato: " + (cliente != null ? cliente.getNome() + " | " + cliente.getTelefone() : "") + "                        |");
-            System.out.println("|  5. Observações: " + observacoes + "                    |");
-            System.out.println("|  6. Enviar solicitação               |");
-            System.out.println("|  7. Cancelar                         |");
-            System.out.println("|                                      |");
-            System.out.println("+--------------------------------------+");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Preencha o formulário de Solicitação             |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("1. Evento: " + (eventoSelecionado != null ? eventoSelecionado.getNome() : ""));
+            System.out.println("2. Endereço: " + (enderecoSelecionado != null ? enderecoSelecionado.getRua() : ""));
+            System.out.println("3. Horário: " + (dataHoraDeInicio != null ? dataHoraDeInicio + " - " : "") + (dataHoraDeTermino != null ? dataHoraDeTermino.toString() : ""));
+            System.out.println("4. Contato: " + (cliente != null ? cliente.getNome() + " | " + cliente.getTelefone() : ""));
+            System.out.println("5. Observações: " + observacoes);
+            System.out.println("6. Enviar solicitação");
+            System.out.println("7. Cancelar");
             System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
-            System.out.println();
+
             switch (opcao){
                 case 1:
+                    System.out.println();
                     eventoSelecionado = selecionarEvento(scanner, eventosView, eventos);
                     break;
                 case 2:
                     if (eventoSelecionado == null){
                         System.out.println("Primeiro deve selecionar um Evento!");
+                        System.out.println();
                         break;
                     }
                     enderecoSelecionado = selecionarEndereco(eventoSelecionado);
@@ -118,6 +114,7 @@ public class MenuCliente {
                     dataHoraDeInicio = new String(scanner.nextLine());
                     System.out.print("Termino: ");
                     dataHoraDeTermino = new String(scanner.nextLine());
+                    System.out.println();
                     break;
                 case 4:
                     System.out.println("Preencha as informações para contato");
@@ -127,6 +124,7 @@ public class MenuCliente {
                     String telefone = scanner.nextLine();
                     System.out.print("Email: ");
                     String email = scanner.nextLine();
+                    System.out.println();
                     ClienteService clienteService = new ClienteService();
                     if (cliente == null) {
                         cliente = new Cliente(nome, telefone, email);
@@ -138,6 +136,7 @@ public class MenuCliente {
                 case 5:
                     System.out.print("Observações: ");
                     observacoes = scanner.nextLine();
+                    System.out.println();
                     break;
                 case 6:
                     if (eventoSelecionado == null
@@ -147,6 +146,7 @@ public class MenuCliente {
                         || cliente == null)
                     {
                         System.out.println("Os campos obrigatórios precisam ser preenchidos!");
+                        System.out.println();
                         break;
                     }
                     Solicitacao solicitacao = new Solicitacao();
@@ -160,11 +160,14 @@ public class MenuCliente {
                     solicitacaoService.create(solicitacao);
                     System.out.println("Solicitação enviada com sucesso!");
                     System.out.println("Em breve entraremos em contato");
+                    System.out.println();
                     return;
                 case 7:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -189,12 +192,13 @@ public class MenuCliente {
                     System.out.println("1. Selecionar Serviço(s)");
                     System.out.println("2. Selecionar outro Evento");
                     System.out.println("3. Voltar");
-                    System.out.print("Opção: ");
+                    System.out.print("Digite uma opção: ");
                     int opcao = Integer.parseInt(scanner.nextLine());
 
                     if (opcao == 2){ break; }
                     else if (opcao == 3){ return null; }
-                    else if (opcao != 1){ System.out.println("Opção inválida. Tente novamente."); }
+                    else if (opcao != 1){ System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println(); }
                 }
             } while (true);
         }
@@ -210,20 +214,22 @@ public class MenuCliente {
         // Selecionar os serviços
         ArrayList<Servico> servicosSelecionados = new ArrayList<>();
         while (true) {
-            System.out.println("+------------------------------------------------+");
-            System.out.println("|  Selecione o(s) serviço(s) desejado(s):        |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|  Selecione o(s) serviço(s) desejado(s):          |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
             ArrayList<Servico> servicosDoEvento = eventoSelecionado.getServicos();
             for (int i = 0; i < servicosDoEvento.size(); i++){
                 Servico servico = servicosDoEvento.get(i);
-                System.out.printf("| %d. [%s] %s\n", i + 1, servicosSelecionados.contains(servico) ? "X" : " ", servico.getNome() + "                                  |");
+                System.out.printf("%d. [%s] %s\n", i + 1, servicosSelecionados.contains(servico) ? "X" : " ", servico.getNome());
             }
-            System.out.println("|  C. Confirmar                                  +");
-            System.out.println("|  0. Voltar                                     |");
-            System.out.println("+------------------------------------------------|");
+            System.out.println("C. Confirmar");
+            System.out.println("0. Voltar");
             System.out.print("Digite uma opção: ");
             String opcao = scanner.nextLine().toUpperCase();
             switch (opcao){
                 case "C":
+                    System.out.println();
                     if (servicosSelecionados.size() > 0){
                         return servicosSelecionados;
                     }
@@ -245,12 +251,14 @@ public class MenuCliente {
                         ArrayList<Opcao> opcoesSelecionadas = selecionarOpcoes(scanner, servico);
                         if (opcoesSelecionadas == null ){
                             System.out.println("Ao menos uma opção deve ser selecionada!");
+                            System.out.println();
                             break;
                         }
                         servico.setOpcoes(opcoesSelecionadas);
                         servicosSelecionados.add(servico);
                     } catch (NumberFormatException numberFormatException) {
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
             }
         }
@@ -260,8 +268,10 @@ public class MenuCliente {
         // Selecionar as opções
         ArrayList<Opcao> opcoesSelecionadas = new ArrayList<>();
         while (true) {
-            System.out.println("+------------------------------------+");
-            System.out.println("|Selecione a(s) opcão(ões) desejada(s):");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|  Selecione o(s) opção(s) desejado(s):            |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
             ArrayList<Opcao> opcoesDoServico = servicoSelecionado.getOpcoes();
             for (int i = 0; i < opcoesDoServico.size(); i++){
                 Opcao opcao = opcoesDoServico.get(i);
@@ -269,16 +279,19 @@ public class MenuCliente {
             }
             System.out.println("C. Confirmar");
             System.out.println("0. Voltar");
-            System.out.println("Opção: ");
+            System.out.print("Digite uma opção: ");
             String opcao = scanner.nextLine().toUpperCase();
             switch (opcao){
                 case "C":
+                    System.out.println();
                     if (opcoesSelecionadas.size() < 1){
                         System.out.println("Nenhuma opção foi selecionada!");
+                        System.out.println();
                         break;
                     }
                     return opcoesSelecionadas;
                 case "0":
+                    System.out.println();
                     return null;
                 default:
                     try {
@@ -289,9 +302,11 @@ public class MenuCliente {
                             break;
                         }
                         if (opcao_ != null){ opcoesSelecionadas.add(opcao_); }
-                        else { System.out.println("Opção inválida. Tente novamente."); }
+                        else { System.out.println("Opção inválida. Tente novamente.");
+                            System.out.println(); }
                     } catch (NumberFormatException numberFormatException) {
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
             }
         }

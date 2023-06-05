@@ -11,13 +11,17 @@ public class EnderecoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Consultar");
-            System.out.println("3. Deletar");
-            System.out.println("4. Editar");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|     Menu Endereço                                |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Cadastrar                                   |");
+            System.out.println("|   2. Consultar                                   |");
+            System.out.println("|   3. Deletar                                     |");
+            System.out.println("|   4. Editar                                      |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -34,17 +38,22 @@ public class EnderecoView {
                     editar();
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
 
     public Endereco cadastrar(){
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Preencha os campos:");
+        System.out.println("+--------------------------------------------------+");
+        System.out.println("|     Cadastro - Endereço                          |");
+        System.out.println("|     Preencha as informações:                     |");
+        System.out.println("+--------------------------------------------------+");
         System.out.print("Rua: ");
         String rua = scanner.nextLine();
         System.out.print("Número: ");
@@ -66,6 +75,7 @@ public class EnderecoView {
 
         EnderecoService enderecoService = new EnderecoService();
         enderecoService.create(endereco);
+        System.out.println();
         return endereco;
     }
 
@@ -74,22 +84,28 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Pesquisar por Id");
-            System.out.println("2. Listar todos");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|     Menu Consulta - Endereço                     |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Pesquisar por ID                            |");
+            System.out.println("|   2. Listar todos                                |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.print("Digite o Id: ");
                     Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
                     if (enderecoEncontrado == null) {
-                        System.out.println("Cliente não localizado!");
+                        System.out.println("Endereço não localizado!");
+                        System.out.println();
                         break;
                     }
                     System.out.println(" -- ENDEREÇO --");
+                    System.out.println();
                     System.out.println(enderecoEncontrado);
                     break;
                 case 2:
@@ -104,6 +120,7 @@ public class EnderecoView {
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -111,23 +128,28 @@ public class EnderecoView {
     public void deletar(){
         Scanner scanner = new Scanner(System.in);
         EnderecoService enderecoService = new EnderecoService();
-        System.out.println("Digite o Id: ");
+        System.out.print("Digite o Id: ");
         enderecoService.delete(scanner.nextLine());
+        System.out.println("Endereço deletado com sucesso");
+        System.out.println();
     }
 
     public void editar(){
         Scanner scanner = new Scanner(System.in);
         EnderecoService enderecoService = new EnderecoService();
 
-        System.out.println("Digite o Id: ");
+        System.out.print("Digite o Id: ");
         Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
         if (enderecoEncontrado == null) {
             System.out.println("Opção não localizada!");
+            System.out.println();
             return;
         }
 
         while (true) {
-            System.out.println("Escolha um campo para editar:");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|     Menu Edição - Endereço                       |");
+            System.out.println("+--------------------------------------------------+");
             System.out.println("1. Rua: " + enderecoEncontrado.getRua());
             System.out.println("2. Número: " + enderecoEncontrado.getNumero());
             System.out.println("3. Bairro: " + enderecoEncontrado.getBairro());
@@ -138,7 +160,8 @@ public class EnderecoView {
             System.out.println("8. Pais: " + enderecoEncontrado.getEstado());
             System.out.println("9. Salvar");
             System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println();
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
@@ -185,10 +208,13 @@ public class EnderecoView {
                 case 9:
                     enderecoService.update(enderecoEncontrado);
                     System.out.println("Seu registro foi atualizado com sucesso!");
+                    System.out.println();
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -197,30 +223,37 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Selecione um ENDEREÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|   Selecione um ENDEREÇO                          |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Por Id                                      |");
+            System.out.println("|   2. Da lista                                    |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.print("Digite o Id: ");
                     Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
                     if (enderecoEncontrado == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     return enderecoEncontrado;
                 case 2:
                     ArrayList<Endereco> enderecos = enderecoService.read();
                     while(true){
-                        if (enderecos.size() > 0){ System.out.println(" -- ENDEREÇOS --"); }
+                        if (enderecos.size() > 0){ System.out.println(" -- ENDEREÇOS --");
+                            System.out.println();}
                         for (int i = 0; i < enderecos.size(); i++){
                             System.out.printf("%d. %s\n", i + 1, enderecos.get(i).getRua());
                         }
                         System.out.println("0. Voltar");
+                        System.out.println();
                         System.out.print("Selecione uma opção: ");
                         opcao = Integer.parseInt(scanner.nextLine());
                         if (opcao == 0) { break; }
@@ -229,12 +262,14 @@ public class EnderecoView {
                             return enderecoSelecionado;
                         }
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
                     break;
                 case 0:
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
@@ -243,29 +278,36 @@ public class EnderecoView {
         EnderecoService enderecoService = new EnderecoService();
 
         while (true) {
-            System.out.println("Selecione um ENDEREÇO");
-            System.out.println("1. Por Id");
-            System.out.println("2. Da lista");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|   Selecione um ENDEREÇO                          |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Por Id                                      |");
+            System.out.println("|   2. Da lista                                    |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.print("Digite o Id: ");
                     Endereco enderecoEncontrado = enderecoService.read(scanner.nextLine());
                     if (enderecoEncontrado == null) {
                         System.out.println("Opção não localizada!");
+                        System.out.println();
                         break;
                     }
                     return enderecoEncontrado;
                 case 2:
                     while(true){
-                        if (enderecosDisponiveis.size() > 0){ System.out.println(" -- ENDEREÇOS --"); }
+                        if (enderecosDisponiveis.size() > 0){ System.out.println(" -- ENDEREÇOS --");
+                            System.out.println(); }
                         for (int i = 0; i < enderecosDisponiveis.size(); i++){
                             System.out.printf("%d. %s\n", i + 1, enderecosDisponiveis.get(i).getRua());
                         }
                         System.out.println("0. Voltar");
+                        System.out.println();
                         System.out.print("Selecione uma opção: ");
                         opcao = Integer.parseInt(scanner.nextLine());
                         if (opcao == 0) { break; }
@@ -274,12 +316,14 @@ public class EnderecoView {
                             return enderecoSelecionado;
                         }
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
                     break;
                 case 0:
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
