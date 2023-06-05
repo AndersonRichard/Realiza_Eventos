@@ -2,7 +2,6 @@ package views;
 
 import models.Solicitacao;
 import services.SolicitacaoService;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,16 +10,15 @@ public class SolicitacaoView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("+--------------------------------------+");
-            System.out.println("|     Menu Solicitação                 |");
-            System.out.println("|     Escolha uma opção:               |");
-            System.out.println("|                                      |");
-            System.out.println("|   1. Consultar                       |");
-            System.out.println("|   2. Deletar                         |");
-            System.out.println("|   3. Gerar Relatório                 |");
-            System.out.println("|   0. Voltar                          |");
-            System.out.println("|                                      |");
-            System.out.println("+--------------------------------------+");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|     Menu Solicitação                             |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Consultar                                   |");
+            System.out.println("|   2. Deletar                                     |");
+            System.out.println("|   3. Gerar Relatório                             |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
             System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
@@ -34,14 +32,17 @@ public class SolicitacaoView {
                     deletar();
                     break;
                 case 3:
+                    System.out.println();
                     Solicitacao solicitacaoSelecionada = selecionar();
                     if (solicitacaoSelecionada != null){
                         SolicitacaoService solicitacaoService = new SolicitacaoService();
                         System.out.println(solicitacaoService.exportTxt(solicitacaoSelecionada));
                         System.out.println("Relatório gerado com sucesso!");
+                        System.out.println();
                         break;
                     }
                     System.out.println("Nenhuma solicitação foi selecionada.");
+                    System.out.println();
                     break;
                 case 0:
                     System.out.println();
@@ -56,15 +57,14 @@ public class SolicitacaoView {
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
-                System.out.println("+--------------------------------------+");
-                System.out.println("|     Menu Solicitação                 |");
-                System.out.println("|     Escolha uma opção:               |");
-                System.out.println("|                                      |");
-                System.out.println("|   1. Pesquisar por ID                |");
-                System.out.println("|   2. Listar todos                    |");
-                System.out.println("|   0. Voltar                          |");
-                System.out.println("|                                      |");
-                System.out.println("+--------------------------------------+");
+                System.out.println("+--------------------------------------------------+");
+                System.out.println("|     Menu Solicitação                             |");
+                System.out.println("|                                                  |");
+                System.out.println("|   1. Pesquisar por ID                            |");
+                System.out.println("|   2. Listar todos                                |");
+                System.out.println("|   0. Voltar                                      |");
+                System.out.println("|                                                  |");
+                System.out.println("+--------------------------------------------------+");
                 System.out.print("Digite uma opção: ");
                 int opcao = Integer.parseInt(scanner.nextLine());
                 SolicitacaoService solicitacaoService = new SolicitacaoService();
@@ -104,30 +104,37 @@ public class SolicitacaoView {
         SolicitacaoService solicitacaoService = new SolicitacaoService();
 
         while (true) {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Selecionar por Id");
-            System.out.println("2. Selecionar na lista");
-            System.out.println("0. Voltar");
-            System.out.print("Opção: ");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("|     Gerar Relatório                              |");
+            System.out.println("|  1. Selecionar por Id                            |");
+            System.out.println("|  2. Selecionar na lista                          |");
+            System.out.println("|  0. Voltar                                       |");
+            System.out.println("|                                                  |");
+            System.out.println("+--------------------------------------------------+");
+            System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Id: ");
+                    System.out.print("Digite o Id: ");
                     Solicitacao solicitacaoEncontrada = solicitacaoService.read(scanner.nextLine());
                     if (solicitacaoEncontrada == null) {
                         System.out.println("Solicitação não localizada!");
+                        System.out.println();
                         break;
                     }
                     return solicitacaoEncontrada;
                 case 2:
                     ArrayList<Solicitacao> solicitacoes = solicitacaoService.read();
                     while(true){
-                        if (solicitacoes.size() > 0){ System.out.println(" -- OPÇÕES --"); }
+                        System.out.println();
+                        if (solicitacoes.size() > 0){ System.out.println(" -- OPÇÕES --");
+                            System.out.println(); }
                         for (int i = 0; i < solicitacoes.size(); i++){
                             System.out.printf("%d. %s\n", i + 1, "Solicitação_" + solicitacoes.get(i).getId());
                         }
                         System.out.println("0. Voltar");
+                        System.out.println();
                         System.out.print("Selecione uma opção: ");
                         opcao = Integer.parseInt(scanner.nextLine());
                         if (opcao == 0) { break; }
@@ -136,12 +143,14 @@ public class SolicitacaoView {
                             return solicitacaoSelecionada;
                         }
                         System.out.println("Opção inválida. Tente novamente.");
+                        System.out.println();
                     }
                     break;
                 case 0:
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println();
             }
         }
     }
