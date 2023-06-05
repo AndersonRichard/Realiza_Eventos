@@ -44,7 +44,9 @@ public class SolicitacaoService {
     public void delete(String id){
         for (Solicitacao registro : new ArrayList<>(dados)){
             if (registro.getId().equals(id)){
+                ClienteService clienteService = new ClienteService();
                 dados.remove(registro);
+                clienteService.delete(registro.getCliente().getId());
                 save();
             }
         }
