@@ -30,6 +30,7 @@ public class ServicoView {
                     cadastrar();
                     break;
                 case 2:
+                    System.out.println();
                     consultar();
                     break;
                 case 3:
@@ -42,6 +43,7 @@ public class ServicoView {
                     gerenciarOpcoes();
                     break;
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -52,6 +54,7 @@ public class ServicoView {
     public Servico cadastrar(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("+--------------------------------------------------+");
+        System.out.println("|     Cadastro - Serviço                           |");
         System.out.println("|     Preencha as informações:                     |");
         System.out.println("+--------------------------------------------------+");
         System.out.print("Nome: ");
@@ -61,6 +64,8 @@ public class ServicoView {
         Servico servico = new Servico(nome, descricao);
         ServicoService servicoService = new ServicoService();
         servicoService.create(servico);
+        System.out.println("Serviço cadastrado com sucesso");
+        System.out.println();
         return servico;
     }
     public void consultar(){
@@ -68,10 +73,12 @@ public class ServicoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|    Escolha uma opção:                            |");
-            System.out.println("|  1. Pesquisar por ID                             |");
-            System.out.println("|  2. Listar todos                                 |");
-            System.out.println("|  0. Voltar                                       |");
+            System.out.println("|     Menu Consulta - Serviço                      |");
+            System.out.println("|                                                  |");
+            System.out.println("|   1. Pesquisar por ID                            |");
+            System.out.println("|   2. Listar todos                                |");
+            System.out.println("|   0. Voltar                                      |");
+            System.out.println("|                                                  |");
             System.out.println("+--------------------------------------------------+");
             System.out.print("Digite uma opção: ");
             int opcao = Integer.parseInt(scanner.nextLine());
@@ -90,9 +97,9 @@ public class ServicoView {
                     break;
                 case 2:
                     System.out.println("Lista de todas as solicitações:");
-                    System.out.println();
                     for (Servico servico : servicoService.read()) {
                         System.out.println(servico);
+                        System.out.println("-----------------");
                     }
                     break;
                 case 0:
@@ -152,6 +159,7 @@ public class ServicoView {
                     }
                     break;
                 case 0:
+                    System.out.println();
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -207,6 +215,7 @@ public class ServicoView {
                     }
                     break;
                 case 0:
+                    System.out.println();
                     return null;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -236,7 +245,7 @@ public class ServicoView {
 
         while (true) {
             System.out.println("+--------------------------------------------------+");
-            System.out.println("|     Menu Edição                                  |");
+            System.out.println("|     Menu Edição - Serviço                        |");
             System.out.println("+--------------------------------------------------+");
             System.out.println("1. Nome: " + servicoEncontrado.getNome());
             System.out.println("2. Descrição: " + servicoEncontrado.getDescricao());
@@ -261,7 +270,9 @@ public class ServicoView {
                     break;
                 case 3:
                     servicoService.update(servicoEncontrado);
+                    System.out.println();
                 case 0:
+                    System.out.println();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -271,6 +282,7 @@ public class ServicoView {
     }
 
     public void gerenciarOpcoes(){
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         OpcaoView opcaoView = new OpcaoView();
         Servico servicoEncontrado = selecionar();
