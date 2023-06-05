@@ -146,7 +146,6 @@ public class EventoView {
 
             switch (opcao) {
                 case 1:
-                    System.out.println();
                     System.out.println("Digite o novo valor para:");
                     System.out.print("Nome:");
                     eventoEncontrado.setNome(scanner.nextLine());
@@ -290,7 +289,6 @@ public class EventoView {
         ArrayList<Servico> servicos = eventoEncontrado.getServicos();
         Servico servicoSelecionado;
         while (true) {
-            System.out.println();
             System.out.println("      Serviços do evento " + eventoEncontrado.getNome());
             System.out.println("+--------------------------------------------------+");
             System.out.println("|  1. Listar serviços associados                   |");
